@@ -379,7 +379,7 @@ const Task: React.FC = () => {
       />
 
       {/* Bottom spacing */}
-      <div className="h-24"></div>
+      {/* <div className="h-24"></div> */}
     </div>
   );
 };

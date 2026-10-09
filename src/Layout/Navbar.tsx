@@ -25,6 +25,7 @@ import AccountDetailsModal from "@/components/modal/AccountDetailsModal";
 import { MdEmojiEvents } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { motion, AnimatePresence } from "framer-motion";
+import { IoMenuOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -132,14 +133,14 @@ const Navbar = () => {
               {isAuthenticated && (
                 <button
                   onClick={() => setIsOpen(true)}
-                  className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 ${
+                  className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer ${
                     isLightHeader
                       ? "text-black hover:text-gray-600"
                       : "text-white hover:text-gray-300"
                   }`}
                   aria-label="Open menu"
                 >
-                  <Menu className="h-6 w-6" />
+                  <IoMenuOutline className="h-6 w-6" />
                 </button>
               )}
             </div>
@@ -275,7 +276,7 @@ const Navbar = () => {
               </div>
 
               {/* Sign Out */}
-              <div className="p-4 border-t border-gray-100 mt-auto">
+              <div className="p-2 border-t border-gray-100 mt-auto">
                 <button
                   className="w-full flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer transition-colors text-left font-normal"
                   onClick={handleLogOut}
