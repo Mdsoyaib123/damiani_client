@@ -11,9 +11,9 @@ import {
   LogOut,
   Home,
   ThumbsUp,
+  X,
 } from "lucide-react";
 import { MdHistory, MdPermContactCalendar } from "react-icons/md";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@/assets/juwelo-logo.png";
 import "./Navbar.css";
 import { MdEvent } from "react-icons/md";
@@ -24,6 +24,7 @@ import { useGetSingleUserQuery } from "@/store/api/user/userApi";
 import AccountDetailsModal from "@/components/modal/AccountDetailsModal";
 import { MdEmojiEvents } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,16 +81,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close sheet when route changes
+  // Lock body scroll when drawer open
   useEffect(() => {
-    setIsOpen(false);
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const handleLogOut = () => {
-    setIsOpen(false);
     dispatch(logout());
-    navigate("/login", { replace: true });
+    navigate("/login");
+    setIsOpen(false);
   };
 
   const handleMenuItemClick = () => {
@@ -120,134 +127,20 @@ const Navbar = () => {
       >
         <div className="w-full px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 relative">
-            {/* Left: Hamburger / Sheet Menu */}
+            {/* Left: Hamburger Button */}
             <div className="flex items-center gap-3 z-10">
               {isAuthenticated && (
-                <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                  <SheetTrigger asChild>
-                    <button
-                      className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 ${
-                        isLightHeader
-                          ? "text-black hover:text-gray-600"
-                          : "text-white hover:text-gray-300"
-                      }`}
-                      aria-label="Open menu"
-                    >
-                      <Menu className="h-6 w-6" />
-                    </button>
-                  </SheetTrigger>
-                  <SheetContent
-                    side="left"
-                    className="custom-sheet-width p-0 z-[100] bg-white w-[85%] max-w-[320px] fixed top-0 h-full"
-                  >
-                    <div className="flex flex-col h-full">
-                      {/* User Profile Section (Cash In button removed) */}
-                      <div className="nav-profile-anim flex flex-col items-center pt-8 pb-6 border-b border-gray-100">
-                        <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
-                          <User className="w-8 h-8 text-gray-600" />
-                        </div>
-                        <div className="text-lg font-semibold text-gray-900">
-                          {user?.name || "160****052"}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          UID:{localStorage.getItem("userId") || "138334"}
-                        </div>
-                      </div>
-
-                      {/* Menu List - Clean vertical items matching photo style */}
-                      <div className="nav-menu-stagger flex-1 overflow-y-auto space-y-1 py-3 px-2">
-                        <Link to="/" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<Home className="w-5 h-5" />}
-                            text="Home"
-                          />
-                        </Link>
-                        <Link to="/task" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<ThumbsUp className="w-5 h-5" />}
-                            text="Work center"
-                          />
-                        </Link>
-                        <Link to="/check-in" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<LogIn className="w-5 h-5" />}
-                            text="Check In"
-                          />
-                        </Link>
-                        <Link to="/cash-out" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<TbCurrencyTaka className="w-6 h-6" />}
-                            text="Sell Out"
-                          />
-                        </Link>
-                        <Link to="/score" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<MdEmojiEvents className="w-6 h-6" />}
-                            text="Score"
-                          />
-                        </Link>
-                        <button
-                          className="w-full text-left"
-                          onClick={handleAccountDetailsClick}
-                        >
-                          <MenuItem
-                            icon={<CreditCard className="w-5 h-5" />}
-                            text="Account details"
-                          />
-                        </button>
-                        <Link to="/bind-account" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<CreditCard className="w-5 h-5" />}
-                            text="Bind Account"
-                          />
-                        </Link>
-                        <Link to="/history" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<MdHistory className="w-5 h-5" />}
-                            text="History"
-                          />
-                        </Link>
-                        <Link to="/forgot-password" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<Settings className="w-5 h-5" />}
-                            text="Change Password"
-                          />
-                        </Link>
-                        <Link to="/help" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<HelpCircle className="w-5 h-5" />}
-                            text="Help"
-                          />
-                        </Link>
-                        <Link to="/about" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<Info className="w-5 h-5" />}
-                            text="About Us"
-                          />
-                        </Link>
-                        <Link to="/contact" onClick={handleMenuItemClick}>
-                          <MenuItem
-                            icon={<Mail className="w-5 h-5" />}
-                            text="Contact us"
-                          />
-                        </Link>
-                      </div>
-
-                      {/* Sign Out Button */}
-                      <div className="p-4 border-t border-gray-100 mt-auto">
-                        <button
-                          className="w-full flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer transition-colors text-left font-normal"
-                          onClick={handleLogOut}
-                        >
-                          <LogOut className="w-5 h-5 text-red-400" />
-                          <span className="text-base font-normal text-red-500">
-                            Sign Out
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </SheetContent>
-                </Sheet>
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 ${
+                    isLightHeader
+                      ? "text-black hover:text-gray-600"
+                      : "text-white hover:text-gray-300"
+                  }`}
+                  aria-label="Open menu"
+                >
+                  <Menu className="h-6 w-6" />
+                </button>
               )}
             </div>
 
@@ -264,7 +157,7 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Right icons */}
             <div className="flex items-center gap-2 z-10">
               <a
                 href="/event"
@@ -289,8 +182,112 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
       </nav>
+
+      {/* ── Framer Motion Slide Drawer ── */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              className="fixed inset-0 bg-black/50 z-[100]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Drawer panel */}
+            <motion.div
+              key="drawer"
+              className="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-white z-[101] flex flex-col shadow-2xl"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 35,
+              }}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+
+              {/* User Profile Section */}
+              <div className="flex flex-col items-center pt-10 pb-6 border-b border-gray-100">
+                <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
+                  <User className="w-8 h-8 text-gray-600" />
+                </div>
+                <div className="text-lg font-semibold text-gray-900">
+                  {user?.name || "160****052"}
+                </div>
+                <div className="text-sm text-gray-500">
+                  UID:{localStorage.getItem("userId") || "138334"}
+                </div>
+              </div>
+
+              {/* Menu List */}
+              <div className="flex-1 overflow-y-auto space-y-1 py-3 px-2">
+                <Link to="/" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<Home className="w-5 h-5" />} text="Home" />
+                </Link>
+                <Link to="/task" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<ThumbsUp className="w-5 h-5" />} text="Work center" />
+                </Link>
+                <Link to="/check-in" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<LogIn className="w-5 h-5" />} text="Check In" />
+                </Link>
+                <Link to="/cash-out" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<TbCurrencyTaka className="w-6 h-6" />} text="Sell Out" />
+                </Link>
+                <Link to="/score" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<MdEmojiEvents className="w-6 h-6" />} text="Score" />
+                </Link>
+                <button className="w-full text-left" onClick={handleAccountDetailsClick}>
+                  <MenuItem icon={<CreditCard className="w-5 h-5" />} text="Account details" />
+                </button>
+                <Link to="/bind-account" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<CreditCard className="w-5 h-5" />} text="Bind Account" />
+                </Link>
+                <Link to="/history" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<MdHistory className="w-5 h-5" />} text="History" />
+                </Link>
+                <Link to="/forgot-password" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<Settings className="w-5 h-5" />} text="Change Password" />
+                </Link>
+                <Link to="/help" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<HelpCircle className="w-5 h-5" />} text="Help" />
+                </Link>
+                <Link to="/about" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<Info className="w-5 h-5" />} text="About Us" />
+                </Link>
+                <Link to="/contact" onClick={handleMenuItemClick}>
+                  <MenuItem icon={<Mail className="w-5 h-5" />} text="Contact us" />
+                </Link>
+              </div>
+
+              {/* Sign Out */}
+              <div className="p-4 border-t border-gray-100 mt-auto">
+                <button
+                  className="w-full flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer transition-colors text-left font-normal"
+                  onClick={handleLogOut}
+                >
+                  <LogOut className="w-5 h-5 text-red-400" />
+                  <span className="text-base font-normal text-red-500">Sign Out</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Account Details Modal */}
       <AccountDetailsModal
