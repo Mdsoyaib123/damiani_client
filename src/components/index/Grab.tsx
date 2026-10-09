@@ -9,7 +9,7 @@ const Grab = () => {
   };
 
   return (
-    <div className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden">
+    <div className="relative flex h-[80vh] w-full text-center items-center justify-center overflow-hidden">
       <iframe
         src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
         title="Juwelo background video"
@@ -19,7 +19,7 @@ const Grab = () => {
 
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
-      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end p-8 text-left">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-end p-8 ">
         <h1 className="mb-3 text-3xl font-light text-white md:text-4xl">
           Do more with{" "}
           <span className="text-golden font-extrabold uppercase">Juwelo</span>
