@@ -246,12 +246,12 @@ const Task: React.FC = () => {
             }`}
           >
             {/* Index number */}
-            <span className="text-[10px] text-gray-300 font-light w-3 flex-shrink-0 tabular-nums">
+            <span className="text-[10px] text-gray-300 font-light w-3 shrink-0 tabular-nums">
               {task.id}
             </span>
 
             {/* Image — clean, no border */}
-            <div className="w-14 h-14 bg-gray-50 flex-shrink-0 overflow-hidden">
+            <div className="w-14 h-14 bg-gray-50 shrink-0 overflow-hidden">
               <img
                 src={task.image}
                 alt={task.title}
@@ -269,13 +269,13 @@ const Task: React.FC = () => {
                 {task.title}
               </p>
               <div className="flex items-center gap-1">
-                <Star className="w-2.5 h-2.5 fill-golden text-golden flex-shrink-0" />
+                <Star className="w-2.5 h-2.5 fill-golden text-golden shrink-0" />
                 <span className="text-[10px] text-gray-400">{task.reviews}</span>
               </div>
             </div>
 
             {/* Arrow */}
-            <ChevronRight className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" />
+            <ChevronRight className="w-3.5 h-3.5 text-gray-300 shrink-0" />
           </div>
         ))}
       </div>

@@ -345,7 +345,7 @@ const History = () => {
                         </p>
 
                         <span
-                          className={`mt-2 inline-block border px-2 py-1 text-[9px] uppercase tracking-[0.1em] ${getStatusStyle(
+                          className={`mt-2 inline-block border px-2 py-1 text-[9px] uppercase tracking-widest ${getStatusStyle(
                             item.transactionStatus,
                           )}`}
                         >
@@ -358,14 +358,14 @@ const History = () => {
                     {(item.bankName ||
                       item.processingTime ||
                       item.reviewRemark) && (
-                      <div className="ml-[52px] mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-gray-100 pt-4">
+                      <div className="ml-13 mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-gray-100 pt-4">
                         {item.bankName && (
                           <div className="min-w-0">
                             <p className="text-[9px] uppercase tracking-[0.14em] text-gray-400">
                               Bank name
                             </p>
 
-                            <p className="mt-1.5 break-words text-xs text-gray-700">
+                            <p className="mt-1.5 wrap-break-word text-xs text-gray-700">
                               {item.bankName}
                             </p>
                           </div>
@@ -436,7 +436,7 @@ const History = () => {
                           </div>
 
                           <div className="min-w-0">
-                            <h3 className="break-words text-sm font-normal capitalize text-black">
+                            <h3 className="wrap-break-word text-sm font-normal capitalize text-black">
                               {title}
                             </h3>
 
