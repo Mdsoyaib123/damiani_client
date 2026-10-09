@@ -8,6 +8,9 @@ import {
   HelpCircle,
   Info,
   Settings,
+  LogOut,
+  Home,
+  ThumbsUp,
 } from "lucide-react";
 import { MdHistory, MdPermContactCalendar } from "react-icons/md";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -128,12 +131,12 @@ const Navbar = () => {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-[85%] max-w-[380px] fixed top-0 h-full"
+                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-[85%] max-w-[320px] fixed top-0 h-full"
                   >
                     <div className="flex flex-col h-full">
-                      {/* User Profile Section */}
-                      <div className="flex flex-col items-center pt-8 pb-6 border-b border-gray-200">
-                        <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mb-3">
+                      {/* User Profile Section (Cash In button removed) */}
+                      <div className="flex flex-col items-center pt-8 pb-6 border-b border-gray-100">
+                        <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
                           <User className="w-8 h-8 text-gray-600" />
                         </div>
                         <div className="text-lg font-semibold text-gray-900">
@@ -142,63 +145,20 @@ const Navbar = () => {
                         <div className="text-sm text-gray-500">
                           UID:{localStorage.getItem("userId") || "138334"}
                         </div>
-                        <button className="mt-4 w-[90%] bg-black text-white py-2.5 rounded-md font-medium hover:bg-gray-800 transition-colors">
-                          Cash In
-                        </button>
                       </div>
 
-                      {/* Quick Actions Grid */}
-                      <div className="grid grid-cols-4 gap-4 px-6 py-2 border-b border-gray-200">
-                        <Link to="/cash-out">
-                          <button className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity">
-                            <div className="w-12 h-12 flex items-center justify-center text-gray-800">
-                              <TbCurrencyTaka className="w-6 h-6" />
-                            </div>
-                            <span className="text-xs text-center text-gray-800">
-                              Sell Out
-                            </span>
-                          </button>
-                        </Link>
-                        <Link to="/contact">
-                          <button className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity">
-                            <div className="w-12 h-12 flex items-center justify-center text-gray-800">
-                              <Mail className="w-6 h-6" />
-                            </div>
-                            <span className="text-xs text-center text-gray-800">
-                              Contact us
-                            </span>
-                          </button>
-                        </Link>
-                        <Link
-                          to="/score"
-                          className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity"
-                        >
-                          <div className="w-12 h-12 flex items-center justify-center text-gray-800">
-                            <MdEmojiEvents className="w-7 h-7" />
-                          </div>
-                          <span className="text-xs text-center text-gray-800">
-                            Score
-                          </span>
-                        </Link>
-                        <button
-                          onClick={handleAccountDetailsClick}
-                          className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity"
-                        >
-                          <div className="w-12 h-12 flex items-center justify-center text-gray-800">
-                            <CreditCard className="w-6 h-6" />
-                          </div>
-                          <span className="text-xs text-center text-gray-800">
-                            Account details
-                          </span>
-                        </button>
-                      </div>
-
-                      {/* Menu Items */}
-                      <div className="flex-1 overflow-y-auto">
-                        <Link to="/bind-account" onClick={handleMenuItemClick}>
+                      {/* Menu List - Clean vertical items matching photo style */}
+                      <div className="flex-1 overflow-y-auto space-y-1 py-3 px-2">
+                        <Link to="/" onClick={handleMenuItemClick}>
                           <MenuItem
-                            icon={<CreditCard className="w-5 h-5" />}
-                            text="Bind Account"
+                            icon={<Home className="w-5 h-5" />}
+                            text="Home"
+                          />
+                        </Link>
+                        <Link to="/task" onClick={handleMenuItemClick}>
+                          <MenuItem
+                            icon={<ThumbsUp className="w-5 h-5" />}
+                            text="Work center"
                           />
                         </Link>
                         <Link to="/check-in" onClick={handleMenuItemClick}>
@@ -207,16 +167,40 @@ const Navbar = () => {
                             text="Check In"
                           />
                         </Link>
+                        <Link to="/cash-out" onClick={handleMenuItemClick}>
+                          <MenuItem
+                            icon={<TbCurrencyTaka className="w-6 h-6" />}
+                            text="Sell Out"
+                          />
+                        </Link>
+                        <Link to="/score" onClick={handleMenuItemClick}>
+                          <MenuItem
+                            icon={<MdEmojiEvents className="w-6 h-6" />}
+                            text="Score"
+                          />
+                        </Link>
+                        <button
+                          className="w-full text-left"
+                          onClick={handleAccountDetailsClick}
+                        >
+                          <MenuItem
+                            icon={<CreditCard className="w-5 h-5" />}
+                            text="Account details"
+                          />
+                        </button>
+                        <Link to="/bind-account" onClick={handleMenuItemClick}>
+                          <MenuItem
+                            icon={<CreditCard className="w-5 h-5" />}
+                            text="Bind Account"
+                          />
+                        </Link>
                         <Link to="/history" onClick={handleMenuItemClick}>
                           <MenuItem
                             icon={<MdHistory className="w-5 h-5" />}
                             text="History"
                           />
                         </Link>
-                        <Link
-                          to="/forgot-password"
-                          onClick={handleMenuItemClick}
-                        >
+                        <Link to="/forgot-password" onClick={handleMenuItemClick}>
                           <MenuItem
                             icon={<Settings className="w-5 h-5" />}
                             text="Change Password"
@@ -234,15 +218,24 @@ const Navbar = () => {
                             text="About Us"
                           />
                         </Link>
+                        <Link to="/contact" onClick={handleMenuItemClick}>
+                          <MenuItem
+                            icon={<Mail className="w-5 h-5" />}
+                            text="Contact us"
+                          />
+                        </Link>
                       </div>
 
                       {/* Sign Out Button */}
-                      <div className="p-4 border-t border-gray-200">
+                      <div className="p-4 border-t border-gray-100 mt-auto">
                         <button
-                          className="w-full cursor-pointer py-3 border-2 border-red-500 text-red-500 rounded-md font-medium hover:bg-red-50 transition-colors"
+                          className="w-full flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer transition-colors text-left font-normal"
                           onClick={handleLogOut}
                         >
-                          Sign Out
+                          <LogOut className="w-5 h-5 text-red-400" />
+                          <span className="text-base font-normal text-red-500">
+                            Sign Out
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -265,10 +258,10 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-2 z-10">
+            <div className="flex items-center gap-2 z-10">
               <a
                 href="/event"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors ${
                   isScrolled
                     ? "text-black hover:bg-gray-100"
                     : "text-white hover:bg-gray-700"
@@ -278,7 +271,7 @@ const Navbar = () => {
               </a>
               <a
                 href="/contact"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors ${
                   isScrolled
                     ? "text-black hover:bg-gray-100"
                     : "text-white hover:bg-gray-700"
@@ -287,76 +280,9 @@ const Navbar = () => {
                 <MdPermContactCalendar className="w-6 h-6" />
               </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center z-10">
-              <button
-                onClick={toggleMobileMenu}
-                type="button"
-                className={`focus:outline-none ${
-                  isScrolled ? "text-black" : "text-white"
-                }`}
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div
-            className={`md:hidden ${isScrolled ? "bg-white text-black border-b" : "bg-black/90 text-white"}`}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a
-                href="/"
-                className="block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className="block px-3 py-2 rounded-md text-base font-medium"
-              >
-                About
-              </a>
-              <a
-                href="/event"
-                className="block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Event
-              </a>
-              <a
-                href="/contact"
-                className="block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Account Details Modal */}
@@ -372,13 +298,10 @@ const Navbar = () => {
 // Menu Item Component
 const MenuItem = ({ icon, text }: { icon: React.ReactNode; text: string }) => {
   return (
-    <button className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200 transition-colors">
-      <div className="flex items-center gap-3">
-        <div className="text-gray-700">{icon}</div>
-        <span className="text-gray-900">{text}</span>
-      </div>
-      <span className="text-gray-400 text-xl">+</span>
-    </button>
+    <div className="w-full flex items-center gap-4 px-6 py-3.5 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors text-left">
+      <div className="text-gray-700 flex-shrink-0">{icon}</div>
+      <span className="text-gray-900 text-base font-normal">{text}</span>
+    </div>
   );
 };
 
