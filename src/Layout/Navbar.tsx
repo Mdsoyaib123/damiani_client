@@ -108,13 +108,13 @@ const Navbar = () => {
     <>
       {/* Navbar constrained to mobile frame max-w-[500px] centered */}
       <nav
-        className={`${
+        className={`navbar-slide-in ${
           isHomePage
-            ? "fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] z-50"
+            ? "fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-125 z-50"
             : "sticky top-0 w-full z-50"
         } transition-all duration-300 ${
           isLightHeader
-            ? "bg-white shadow-md text-black border-b border-gray-100"
+            ? "bg-white shadow text-black border-b border-gray-100"
             : "bg-transparent text-white"
         }`}
       >
@@ -138,11 +138,11 @@ const Navbar = () => {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-[85%] max-w-[320px] fixed top-0 h-full"
+                    className="custom-sheet-width p-0 z-[100] bg-white w-[85%] max-w-[320px] fixed top-0 h-full"
                   >
                     <div className="flex flex-col h-full">
                       {/* User Profile Section (Cash In button removed) */}
-                      <div className="flex flex-col items-center pt-8 pb-6 border-b border-gray-100">
+                      <div className="nav-profile-anim flex flex-col items-center pt-8 pb-6 border-b border-gray-100">
                         <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
                           <User className="w-8 h-8 text-gray-600" />
                         </div>
@@ -155,7 +155,7 @@ const Navbar = () => {
                       </div>
 
                       {/* Menu List - Clean vertical items matching photo style */}
-                      <div className="flex-1 overflow-y-auto space-y-1 py-3 px-2">
+                      <div className="nav-menu-stagger flex-1 overflow-y-auto space-y-1 py-3 px-2">
                         <Link to="/" onClick={handleMenuItemClick}>
                           <MenuItem
                             icon={<Home className="w-5 h-5" />}

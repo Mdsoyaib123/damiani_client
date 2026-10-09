@@ -188,9 +188,9 @@ const Task: React.FC = () => {
 
   if (isLoading && !userData) {
     return (
-      <div className="max-w-[500px] mx-auto bg-white h-screen flex items-center justify-center">
+      <div className="max-w-125 mx-auto bg-white h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#181c14] mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-charcoalDark mx-auto"></div>
           <p className="mt-4 text-gray-600 font-normal">Loading...</p>
         </div>
       </div>
@@ -198,16 +198,16 @@ const Task: React.FC = () => {
   }
 
   return (
-    <div className="max-w-[500px] mx-auto bg-white min-h-screen relative">
+    <div className="max-w-125 mx-auto bg-white min-h-screen relative">
       {/* Optional: Loading Overlay for Background Refetches */}
       {isFetching && userData && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-[#181c14] text-white text-center py-1 text-xs max-w-[500px] mx-auto">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-charcoalDark text-white text-center py-1 text-xs max-w-125 mx-auto">
           Checking for updates...
         </div>
       )}
 
       {/* Clean Header matching Home luxury style */}
-      <div className="bg-[#181c14] text-white px-6 py-8 border-b border-white/10">
+      <div className="bg-charcoalDark text-white px-6 py-8 border-b border-white/10">
         <div className="flex items-center text-xs text-white/70 mb-3 font-normal">
           <span onClick={() => navigate("/")} className="hover:text-golden cursor-pointer transition-colors">Home</span>
           <ChevronRight className="w-3.5 h-3.5 mx-1.5 text-white/40" />
