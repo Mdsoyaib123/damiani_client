@@ -102,7 +102,7 @@ const Navbar = () => {
     <>
       {/* Navbar constrained to mobile frame max-w-[500px] centered */}
       <nav
-        className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-125 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-white shadow-md text-black"
             : "bg-transparent text-white"
