@@ -1,0 +1,104 @@
+/* Custom sheet width */
+.custom-sheet-width {
+  width: 450px !important;
+  max-width: 100vw !important;
+}
+
+@media (max-width: 640px) {
+  .custom-sheet-width {
+    width: 100% !important;
+  }
+}
+
+/* Fix for 500px centered layout */
+/* Overlay should cover full viewport */
+[data-radix-presence] {
+  position: fixed !important;
+  inset: 0 !important;
+}
+
+/* Sheet overlay - dark background */
+[data-radix-dialog-overlay] {
+  position: fixed !important;
+  inset: 0 !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+/* Sheet content positioning */
+[data-radix-dialog-content] {
+  position: fixed !important;
+  z-index: 50;
+}
+
+/* For left side sheet in centered 500px layout */
+[data-side="left"][data-radix-dialog-content] {
+  left: 50% !important;
+  transform: translateX(-250px) !important; /* Half of 500px to center */
+  top: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 500px) {
+  [data-side="left"][data-radix-dialog-content] {
+    left: 0 !important;
+    transform: translateX(0) !important;
+  }
+}
+
+/* Smooth animations for sheet */
+[data-state="open"][data-radix-dialog-content] {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+[data-state="closed"][data-radix-dialog-content] {
+  animation: slideOutToLeft 0.3s ease-in;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-350px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-250px);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(-250px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-350px);
+  }
+}
+
+/* Animation adjustments for smaller screens */
+@media (max-width: 500px) {
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideOutToLeft {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-golden: #e2852e;
+  --color-lightGolden: #f5c857;
+  --color-lightestGolden: #ffee91;
+  --color-sky: #abe0f0;
+  --color-lightGray: #d3d3d3;
+  --color-charcoalDark: #181C14;
+
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+  }
+
+  /* Main app container - centered mobile layout */
+  #root {
+    min-height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    background: white;
+  }
+
+  /* Prevent body scroll when sheet is open but keep content visible */
+  body:has([data-state="open"]) {
+    overflow: hidden;
+  }
+}
+
+/* Ensure sheet overlay doesn't hide content */
+[data-radix-portal] {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+/* Make sure the sheet backdrop is centered over the content */
+[data-radix-portal] [data-radix-dialog-overlay] {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Center the sheet content properly */
+[data-radix-portal] [data-radix-dialog-content] {
+  position: fixed;
+  z-index: 51;
+}
