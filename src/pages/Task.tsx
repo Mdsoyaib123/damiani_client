@@ -198,108 +198,116 @@ const Task: React.FC = () => {
   }
 
   return (
-    <div className="max-w-125 mx-auto bg-white min-h-screen relative">
-      {/* Optional: Loading Overlay for Background Refetches */}
+    <div className="max-w-125 mx-auto bg-white relative">
+      {/* Fetching indicator */}
       {isFetching && userData && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-charcoalDark text-white text-center py-1 text-xs max-w-125 mx-auto">
-          Checking for updates...
+        <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white text-center py-1 text-[10px] tracking-widest uppercase max-w-125 mx-auto">
+          Updating…
         </div>
       )}
 
-      {/* Clean Header matching Home luxury style */}
-      <div className="bg-charcoalDark text-white px-6 py-8 border-b border-white/10">
-        <div className="flex items-center text-xs text-white/70 mb-3 font-normal">
-          <span onClick={() => navigate("/")} className="hover:text-golden cursor-pointer transition-colors">Home</span>
-          <ChevronRight className="w-3.5 h-3.5 mx-1.5 text-white/40" />
-          <span className="text-white">Go Shopping</span>
-        </div>
-        <h1 className="text-3xl font-light tracking-wide text-white">
-          Juwelo <span className="text-golden font-bold uppercase">Order</span>
+      {/* ── Breadcrumb ── */}
+      <div className="px-5 pt-4 pb-1 flex items-center gap-1.5 text-[10px] text-gray-400 tracking-wide">
+        <span
+          onClick={() => navigate("/")}
+          className="hover:text-black cursor-pointer transition-colors"
+        >
+          Home
+        </span>
+        <span className="text-gray-300">›</span>
+        <span className="text-gray-500">Go Shopping</span>
+      </div>
+
+      {/* ── Page Title ── */}
+      <div className="px-5 pt-1 pb-4 border-b border-gray-100">
+        <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Collection</p>
+        <h1 className="text-2xl font-light text-black tracking-tight">
+          Juwelo <span className="font-semibold">Order</span>
         </h1>
       </div>
 
-      {/* Tab Headers */}
-      <div className="grid grid-cols-2 bg-white border-b border-gray-200">
-        <div className="text-center py-3.5 text-sm font-medium text-black border-b-2 border-golden">
-          Ng.Collection
-        </div>
-        <div className="text-center py-3.5 text-sm font-normal text-gray-400">
+      {/* ── Tabs ── */}
+      <div className="grid grid-cols-2 border-b border-gray-100">
+        <button className="py-2.5 text-[11px] font-medium text-black border-b-2 border-black tracking-widest uppercase">
+          Collection
+        </button>
+        <button className="py-2.5 text-[11px] font-normal text-gray-400 tracking-widest uppercase">
           Description
-        </div>
+        </button>
       </div>
 
-      {/* Product List */}
-      <div className="divide-y divide-gray-100 bg-white">
-        {tasks.map((task) => (
+      {/* ── Product List ── */}
+      <div className="bg-white">
+        {tasks.map((task, index) => (
           <div
             key={task.id}
-            className="flex items-center justify-between px-5 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
+            className={`flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors ${
+              index !== tasks.length - 1 ? "border-b border-gray-100" : ""
+            }`}
           >
-            {/* Left Side: Number + Image + Details */}
-            <div className="flex items-center gap-4 flex-1">
-              {/* Number */}
-              <div className="text-base font-light text-gray-400 w-5 flex-shrink-0">
-                {task.id}
-              </div>
+            {/* Index number */}
+            <span className="text-[10px] text-gray-300 font-light w-3 flex-shrink-0 tabular-nums">
+              {task.id}
+            </span>
 
-              {/* Product Image */}
-              <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0 border border-gray-100">
-                <img
-                  src={task.image}
-                  alt={task.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect fill='%23e5e7eb' width='64' height='64'/%3E%3C/svg%3E";
-                  }}
-                />
-              </div>
+            {/* Image — clean, no border */}
+            <div className="w-14 h-14 bg-gray-50 flex-shrink-0 overflow-hidden">
+              <img
+                src={task.image}
+                alt={task.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Crect fill='%23f3f4f6' width='56' height='56'/%3E%3C/svg%3E";
+                }}
+              />
+            </div>
 
-              {/* Product Details */}
-              <div className="flex-1 min-w-0 pr-2">
-                <h3 className="text-sm font-normal text-gray-900 mb-1 leading-snug">
-                  {task.title}
-                </h3>
-                <div className="flex items-center gap-1 text-xs text-gray-500 font-normal">
-                  <Star className="w-3.5 h-3.5 fill-golden text-golden" />
-                  <span>{task.reviews}</span>
-                </div>
+            {/* Text */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[12px] font-normal text-black leading-snug mb-1 truncate">
+                {task.title}
+              </p>
+              <div className="flex items-center gap-1">
+                <Star className="w-2.5 h-2.5 fill-golden text-golden flex-shrink-0" />
+                <span className="text-[10px] text-gray-400">{task.reviews}</span>
               </div>
             </div>
 
-            {/* Right Arrow */}
-            <ChevronRight className="w-5 h-5 text-gray-300 flex-shrink-0" />
+            {/* Arrow */}
+            <ChevronRight className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" />
           </div>
         ))}
       </div>
 
-      {/* Bottom Action Controls */}
-      <div className="max-w-[500px] px-5 py-6 mx-auto bg-white border-t border-gray-200">
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <button
-            onClick={() => setOpenAccountModal(true)}
-            className="py-3.5 cursor-pointer rounded text-white bg-[#181c14] hover:bg-black font-normal text-sm transition-colors text-center"
-          >
-            Account Details
-          </button>
-
-          <Link
-            to="/order-record"
-            className="py-3.5 cursor-pointer rounded text-white text-center bg-[#181c14] hover:bg-black font-normal text-sm transition-colors block"
-          >
-            Order Record
-          </Link>
-        </div>
-
+      {/* ── Bottom Actions ── */}
+      <div className="px-5 pt-5 pb-6 border-t border-gray-100 space-y-2">
+        {/* Primary CTA — solid black, sharp, Damiani-style */}
         <button
           onClick={handleStartClick}
-          className="w-full py-4 text-white cursor-pointer bg-golden hover:bg-[#d47820] rounded font-semibold text-lg transition-colors tracking-wide shadow-sm"
+          className="w-full py-3.5 bg-black text-white text-[11px] font-medium tracking-[0.2em] uppercase cursor-pointer hover:bg-gray-900 transition-colors"
         >
-          Start{" "}
-          <span className="text-white/90 font-normal text-base ml-1">
+          Mining Order{" "}
+          <span className="opacity-50 font-light tracking-normal normal-case">
             ({userData?.data?.completedOrdersCount || 0} / 25)
           </span>
         </button>
+
+        {/* Secondary — text-link style, like "Make an Appointment" */}
+        <div className="flex gap-3">
+          <button
+            onClick={() => setOpenAccountModal(true)}
+            className="flex-1 py-2.5 text-[10px] text-black tracking-widest uppercase cursor-pointer border border-gray-200 hover:border-black transition-colors text-center"
+          >
+            Account
+          </button>
+          <Link
+            to="/order-record"
+            className="flex-1 py-2.5 text-[10px] text-black tracking-widest uppercase cursor-pointer border border-gray-200 hover:border-black transition-colors text-center"
+          >
+            Records
+          </Link>
+        </div>
       </div>
 
       {/* Modals */}
@@ -320,7 +328,6 @@ const Task: React.FC = () => {
         isLoading={isUpdating}
       />
 
-      {/* Mystery Box Modal (for admin assigned products) */}
       {mysteryBoxData && (
         <MysteryBoxModal
           open={openMysteryBoxModal}
@@ -331,7 +338,6 @@ const Task: React.FC = () => {
                   userId,
                   productId: mysteryBoxData.productId
                 }).unwrap();
-                console.log("Mystery box marked as seen");
               } catch (error) {
                 console.error("Failed to mark mystery box as seen:", error);
               }
@@ -344,14 +350,12 @@ const Task: React.FC = () => {
         />
       )}
 
-      {/* Mystery Reward Modal (for global mystery reward) */}
       {activeMysteryReward && (
         <MysteryBoxRewardModal
           open={openMysteryRewardModal}
           onClose={async () => {
             try {
               await removeMysteryReward(userId).unwrap();
-              console.log("Mystery reward removed successfully");
             } catch (error) {
               console.error("Failed to remove mystery reward:", error);
             }
@@ -363,10 +367,8 @@ const Task: React.FC = () => {
         />
       )}
 
-      {/* Mining Order Modal */}
       <MiningOrderModal open={openMiningModal} setOpen={setOpenMiningModal} />
 
-      {/* Error Modals */}
       <ErrorModal
         isOpen={openErrorModal}
         message={errorMessage}
@@ -377,11 +379,8 @@ const Task: React.FC = () => {
         message={errorMessageBlack}
         onClose={() => setOpenErrorModalBlack(false)}
       />
-
-      {/* Bottom spacing */}
-      {/* <div className="h-24"></div> */}
     </div>
   );
 };
 
-export default Task;  
+export default Task;
