@@ -5,13 +5,13 @@ import Grab from "@/components/index/Grab";
 // import Interest from "@/components/index/Interest";
 import Quality from "@/components/index/Quality";
 import TopPicks from "@/components/index/TopPicks";
-import WhyChoose from "@/components/index/WhyChoose";
+// import WhyChoose from "@/components/index/WhyChoose";
 
 const Index = () => {
   return (
     <div className="w-full flex flex-col">
       <Grab />
-      <WhyChoose />
+      {/*<WhyChoose />*/}
       <Flexibility />
       <Quality />
       <Excellent />
