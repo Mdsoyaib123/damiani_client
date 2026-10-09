@@ -1,28 +1,27 @@
 const Quality = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-3.jpg')] h-145 bg-cover bg-center">
-      {/* Optional dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/30" />
+    <div className="relative bg-[url('/src/assets/home-page/malia_hero_mobile_1.webp')] h-225 bg-cover bg-center">
+      {/* Dark gradient overlay for text visibility */}
+      {/*<div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />*/}
 
-      {/* Top Left Box */}
-      <div className="absolute top-8 left-8 z-10 text-white  p-6 max-w-sm rounded-md shadow-lg">
-        <h3 className="text-2xl font-semibold mb-3">Uncompromising Quality</h3>
-        <p className="text-white text-sm leading-relaxed">
+      {/* Merged Content Positioned at Bottom-Left */}
+      <div className="relative z-10 flex flex-col items-start justify-end h-full text-left p-8 md:p-12">
+        <h3 className="text-3xl md:text-4xl font-light text-white mb-2">
+          Uncompromising Quality
+        </h3>
+        <p className="text-white/90 text-sm md:text-base leading-relaxed mb-4 max-w-xl">
           Every piece is crafted with exceptional attention to detail, using
           ethically sourced materials and refined techniques to ensure lasting
           brilliance and strength.
         </p>
-      </div>
 
-      {/* Bottom Right Box */}
-      <div className="absolute bottom-12 right-4 z-10  p-6 max-w-sm rounded-md shadow-lg text-left">
-        <h3 className="text-2xl font-semibold mb-3 text-white">
+        {/*<h3 className="text-xl md:text-2xl font-light text-white mb-2 mt-2">
           Designed for a Lifetime
         </h3>
-        <p className="text-white text-sm leading-relaxed">
+        <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
           Our jewelry is made to be worn, cherished, and passed on—timeless
           designs that remain beautiful through every chapter of life.
-        </p>
+        </p>*/}
       </div>
     </div>
   );
