@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Menu,
   User,
-  // DollarSign,
   Mail,
   CreditCard,
   LogIn,
@@ -27,6 +26,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openAccountModal, setOpenAccountModal] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -34,8 +34,6 @@ const Navbar = () => {
 
   // Get authentication state from Redux
   const token = useAppSelector((state) => state.auth.token);
-
-  // Or check localStorage directly (choose one approach)
   const isAuthenticated = !!token || !!localStorage.getItem("accessToken");
 
   // Fetch user data
@@ -65,6 +63,20 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Scroll listener for background and text/icon color transition
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Close sheet when route changes
   useEffect(() => {
     setIsOpen(false);
@@ -88,16 +100,27 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-charcoalDark shadow-lg w-full relative">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo with Conditional Sheet */}
-            <div className="flex items-center justify-center gap-3">
+      {/* Navbar constrained to mobile frame max-w-[500px] centered */}
+      <nav
+        className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-125 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white shadow-md text-black"
+            : "bg-transparent text-white"
+        }`}
+      >
+        <div className="w-full px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 relative">
+            {/* Left: Hamburger / Sheet Menu */}
+            <div className="flex items-center gap-3 z-10">
               {isAuthenticated && (
                 <Sheet open={isOpen} onOpenChange={setIsOpen}>
                   <SheetTrigger asChild>
                     <button
-                      className="text-white hover:text-gray-300 focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95"
+                      className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 ${
+                        isScrolled
+                          ? "text-black hover:text-gray-600"
+                          : "text-white hover:text-gray-300"
+                      }`}
                       aria-label="Open menu"
                     >
                       <Menu className="h-6 w-6" />
@@ -105,7 +128,7 @@ const Navbar = () => {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-70 sm:w-87.5 fixed left-0 top-0 h-full"
+                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-[85%] max-w-[380px] fixed top-0 h-full"
                   >
                     <div className="flex flex-col h-full">
                       {/* User Profile Section */}
@@ -113,7 +136,7 @@ const Navbar = () => {
                         <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mb-3">
                           <User className="w-8 h-8 text-gray-600" />
                         </div>
-                        <div className="text-lg font-semibold">
+                        <div className="text-lg font-semibold text-gray-900">
                           {user?.name || "160****052"}
                         </div>
                         <div className="text-sm text-gray-500">
@@ -128,21 +151,20 @@ const Navbar = () => {
                       <div className="grid grid-cols-4 gap-4 px-6 py-2 border-b border-gray-200">
                         <Link to="/cash-out">
                           <button className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity">
-                            <div className="w-12 h-12 flex items-center justify-center">
-                              {/* <DollarSign className="w-6 h-6" /> */}
+                            <div className="w-12 h-12 flex items-center justify-center text-gray-800">
                               <TbCurrencyTaka className="w-6 h-6" />
                             </div>
-                            <span className="text-xs text-center">
+                            <span className="text-xs text-center text-gray-800">
                               Sell Out
                             </span>
                           </button>
                         </Link>
                         <Link to="/contact">
                           <button className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity">
-                            <div className="w-12 h-12 flex items-center justify-center">
+                            <div className="w-12 h-12 flex items-center justify-center text-gray-800">
                               <Mail className="w-6 h-6" />
                             </div>
-                            <span className="text-xs text-center">
+                            <span className="text-xs text-center text-gray-800">
                               Contact us
                             </span>
                           </button>
@@ -151,22 +173,21 @@ const Navbar = () => {
                           to="/score"
                           className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity"
                         >
-                          <button className="cursor-pointer">
-                            <div className="w-12 h-12 flex items-center justify-center">
-                              {/* <Award className="w-6 h-6" /> */}
-                              <MdEmojiEvents className="w-7 h-7" />
-                            </div>
-                            <span className="text-xs text-center">Score</span>
-                          </button>
+                          <div className="w-12 h-12 flex items-center justify-center text-gray-800">
+                            <MdEmojiEvents className="w-7 h-7" />
+                          </div>
+                          <span className="text-xs text-center text-gray-800">
+                            Score
+                          </span>
                         </Link>
                         <button
                           onClick={handleAccountDetailsClick}
                           className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity"
                         >
-                          <div className="w-12 h-12 flex items-center justify-center">
+                          <div className="w-12 h-12 flex items-center justify-center text-gray-800">
                             <CreditCard className="w-6 h-6" />
                           </div>
-                          <span className="text-xs text-center">
+                          <span className="text-xs text-center text-gray-800">
                             Account details
                           </span>
                         </button>
@@ -228,40 +249,53 @@ const Navbar = () => {
                   </SheetContent>
                 </Sheet>
               )}
+            </div>
 
-              <a
-                href="/"
-                className="text-white text-2xl font-bold flex items-center"
-              >
+            {/* Center: Brand Logo */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+              <a href="/" className="flex items-center">
                 <span className="text-xl">
-                  <img src={logo} alt="JUWELO" className="w-36 h-8" />
+                  <img
+                    src={logo}
+                    alt="JUWELO"
+                    className="w-36 h-8 object-contain"
+                  />
                 </span>
               </a>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex">
+            <div className="hidden md:flex items-center gap-2 z-10">
               <a
                 href="/event"
-                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isScrolled
+                    ? "text-black hover:bg-gray-100"
+                    : "text-white hover:bg-gray-700"
+                }`}
               >
                 <MdEvent className="w-6 h-6" />
               </a>
               <a
                 href="/contact"
-                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isScrolled
+                    ? "text-black hover:bg-gray-100"
+                    : "text-white hover:bg-gray-700"
+                }`}
               >
                 <MdPermContactCalendar className="w-6 h-6" />
-                {/* <MdEmojiEvents className="w-6 h-6" /> */}
               </a>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
+            <div className="md:hidden flex items-center z-10">
               <button
                 onClick={toggleMobileMenu}
                 type="button"
-                className="text-white hover:text-gray-300 focus:outline-none"
+                className={`focus:outline-none ${
+                  isScrolled ? "text-black" : "text-white"
+                }`}
               >
                 <svg
                   className="h-6 w-6"
@@ -292,29 +326,31 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <div
+            className={`md:hidden ${isScrolled ? "bg-white text-black border-b" : "bg-black/90 text-white"}`}
+          >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <a
                 href="/"
-                className="text-white block hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium"
+                className="block px-3 py-2 rounded-md text-base font-medium"
               >
                 Home
               </a>
               <a
                 href="/about"
-                className="text-white block hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium"
+                className="block px-3 py-2 rounded-md text-base font-medium"
               >
                 About
               </a>
               <a
                 href="/event"
-                className="text-white block hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium"
+                className="block px-3 py-2 rounded-md text-base font-medium"
               >
                 Event
               </a>
               <a
                 href="/contact"
-                className="text-white block hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium"
+                className="block px-3 py-2 rounded-md text-base font-medium"
               >
                 Contact
               </a>
