@@ -5,8 +5,8 @@ const Quality = () => {
       {/*<div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />*/}
 
       {/* Merged Content Positioned at Bottom-Left */}
-      <div className="relative z-10 flex flex-col items-start justify-end h-full text-left p-8 md:p-12">
-        <h3 className="text-3xl md:text-4xl font-light text-white mb-2">
+      <div className="relative z-10 flex flex-col items-start justify-end h-full text-left p-8 ">
+        <h3 className="text-3xl  font-light text-white mb-2">
           Uncompromising Quality
         </h3>
         <p className="text-white/90 text-sm md:text-base leading-relaxed mb-4 max-w-xl">

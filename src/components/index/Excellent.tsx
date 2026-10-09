@@ -1,28 +1,19 @@
-import { Star } from "lucide-react";
-
 const Excellent = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-4.jpg')] h-145 bg-cover bg-center flex items-center justify-center">
-      {/* Optional overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+    <div className="relative bg-[url('/src/assets/home-page/Banner-HP-10c-mobile-1536_2400.webp')] h-150 bg-cover bg-center">
+      {/* Dark gradient overlay for text visibility */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
-      {/* Center Review Box */}
-      <div className="relative z-10 bg-gray-800/70 mx-12 px-4 py-8 max-w-xl rounded-lg shadow-xl text-center">
-        <h3 className="text-3xl font-bold mb-4 text-white">Excellent</h3>
-
-        {/* Stars */}
-        <div className="flex justify-center gap-1 mb-4 text-yellow-500">
-          <Star size={22} fill="currentColor" />
-          <Star size={22} fill="currentColor" />
-          <Star size={22} fill="currentColor" />
-          <Star size={22} fill="currentColor" />
-          <Star size={22} fill="currentColor" />
-        </div>
-
-        <p className="text-white text-semibold leading-relaxed">
-          Absolutely stunning craftsmanship and exceptional quality. The jewelry
-          exceeded my expectations and feels truly luxurious. A brand I trust
-          and recommend with confidence.
+      {/* Content Positioned at Bottom-Left */}
+      <div className="relative z-10 flex flex-col items-start justify-end h-full text-left p-8">
+        <h3 className="text-2xl font-light text-white mb-3">
+          Damiani Diamonds
+        </h3>
+        <p className="text-white/90 text-sm font-normal leading-relaxed max-w-xl mb-6">
+          Only the very best diamonds are selected for adorning Damiani jewelry.
+          The Maison has combined its own evaluation criteria to the 4 Cs
+          (Carat, Color, Clarity, Cut) with the universal method as a guarantee
+          of its highly unique and exclusive jewels.
         </p>
       </div>
     </div>
