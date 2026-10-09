@@ -2,36 +2,38 @@ import { useNavigate } from "react-router-dom";
 
 const Grab = () => {
   const navigate = useNavigate();
-
   const isLoggedIn = !!localStorage.getItem("accessToken");
 
   const handleGrabOrder = () => {
-    if (!isLoggedIn) {
-      // Redirect to login if not logged in
-      navigate("/login");
-      return;
-    }
-
-    // Simply navigate to task page - package selection will be handled there
-    navigate("/task");
+    navigate(isLoggedIn ? "/task" : "/login");
   };
 
   return (
-    <div className="bg-[url('/src/assets/home-page/jewel-1.jpg')] h-107.5 bg-cover bg-center flex items-center justify-center">
-      <div className="flex flex-col justify-center items-center gap-3 bg-black/15 mx-3.5 p-2 rounded-md">
-        <h1 className="text-2xl text-white font-bold text-center">
+    <div className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden">
+      <iframe
+        src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
+        title="Juwelo background video"
+        allow="autoplay; fullscreen; picture-in-picture"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-screen w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+      />
+
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end p-8 text-left">
+        <h1 className="mb-3 text-3xl font-light text-white md:text-4xl">
           Do more with{" "}
-          <span className="text-golden uppercase font-extrabold">Juwelo</span>
+          <span className="text-golden font-extrabold uppercase">Juwelo</span>
         </h1>
-        <p className="text-md text-white text-center">
+
+        <p className="mb-6 max-w-xl text-sm font-normal leading-relaxed text-white/90 md:text-base">
           Browse and purchase products in various styles and materials.
         </p>
 
         <button
           onClick={handleGrabOrder}
-          className="bg-black cursor-pointer text-white rounded-md p-2 py-2 w-32 text-center hover:opacity-90"
+          className="inline-flex cursor-pointer items-center gap-1 text-sm font-medium tracking-wide text-white hover:underline md:text-base"
         >
-          Mining Order
+          Mining Order <span className="text-lg">›</span>
         </button>
       </div>
     </div>
