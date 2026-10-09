@@ -1,12 +1,12 @@
 const Extra = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-2.jpg')] h-170 bg-cover bg-center flex items-center justify-center">
+    <div className="relative bg-[url('/src/assets/home-page/Banner-mobile-780x1520.webp')] h-[90vh] bg-cover bg-center flex items-center justify-center">
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/35" />
 
       {/* Middle Text Box */}
       <div className="relative z-10 bg-gray-700/70 mx-8 px-4 py-10 max-w-2xl rounded-lg shadow-xl text-center">
-        <h2 className="text-4xl text-white font-semibold mb-5">
+        <h2 className="text-2xl text-white font-semibold mb-5">
           Where Beauty Meets Meaning
         </h2>
 

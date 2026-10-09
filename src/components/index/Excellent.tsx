@@ -1,6 +1,6 @@
 const Excellent = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/Banner-HP-10c-mobile-1536_2400.webp')] h-150 bg-cover bg-center">
+    <div className="relative bg-[url('/src/assets/home-page/Banner-HP-10c-mobile-1536_2400.webp')] h-[90vh] bg-cover bg-center">
       {/* Dark gradient overlay for text visibility */}
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
