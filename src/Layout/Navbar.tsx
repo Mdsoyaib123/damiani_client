@@ -101,13 +101,20 @@ const Navbar = () => {
     setOpenAccountModal(true);
   };
 
+  const isHomePage = location.pathname === "/";
+  const isLightHeader = !isHomePage || isScrolled;
+
   return (
     <>
       {/* Navbar constrained to mobile frame max-w-[500px] centered */}
       <nav
-        className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white shadow-md text-black"
+        className={`${
+          isHomePage
+            ? "fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] z-50"
+            : "sticky top-0 w-full z-50"
+        } transition-all duration-300 ${
+          isLightHeader
+            ? "bg-white shadow-md text-black border-b border-gray-100"
             : "bg-transparent text-white"
         }`}
       >
@@ -120,7 +127,7 @@ const Navbar = () => {
                   <SheetTrigger asChild>
                     <button
                       className={`focus:outline-none transition-all duration-200 hover:scale-110 active:scale-95 ${
-                        isScrolled
+                        isLightHeader
                           ? "text-black hover:text-gray-600"
                           : "text-white hover:text-gray-300"
                       }`}
@@ -262,7 +269,7 @@ const Navbar = () => {
               <a
                 href="/event"
                 className={`md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors ${
-                  isScrolled
+                  isLightHeader
                     ? "text-black hover:bg-gray-100"
                     : "text-white hover:bg-gray-700"
                 }`}
@@ -272,7 +279,7 @@ const Navbar = () => {
               <a
                 href="/contact"
                 className={`md:px-3 md:py-2 rounded-md text-sm font-medium transition-colors ${
-                  isScrolled
+                  isLightHeader
                     ? "text-black hover:bg-gray-100"
                     : "text-white hover:bg-gray-700"
                 }`}
