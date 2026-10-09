@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const Excellent = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-4.jpg')] h-[580px] bg-cover bg-center flex items-center justify-center">
+    <div className="relative bg-[url('/src/assets/home-page/jewel-4.jpg')] h-145 bg-cover bg-center flex items-center justify-center">
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/60" />
 

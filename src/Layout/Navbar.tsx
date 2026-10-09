@@ -4,7 +4,6 @@ import {
   User,
   // DollarSign,
   Mail,
-
   CreditCard,
   LogIn,
   HelpCircle,
@@ -23,7 +22,6 @@ import { useGetSingleUserQuery } from "@/store/api/user/userApi";
 import AccountDetailsModal from "@/components/modal/AccountDetailsModal";
 import { MdEmojiEvents } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,7 +88,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-[#181C14] shadow-lg w-full relative">
+      <nav className="bg-charcoalDark shadow-lg w-full relative">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo with Conditional Sheet */}
@@ -107,7 +105,7 @@ const Navbar = () => {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-[280px] sm:w-[350px] fixed left-0 top-0 h-full"
+                    className="custom-sheet-width p-0 z-100 bg-white transition-all duration-300 ease-in-out w-70 sm:w-87.5 fixed left-0 top-0 h-full"
                   >
                     <div className="flex flex-col h-full">
                       {/* User Profile Section */}
@@ -134,7 +132,9 @@ const Navbar = () => {
                               {/* <DollarSign className="w-6 h-6" /> */}
                               <TbCurrencyTaka className="w-6 h-6" />
                             </div>
-                            <span className="text-xs text-center">Sell Out</span>
+                            <span className="text-xs text-center">
+                              Sell Out
+                            </span>
                           </button>
                         </Link>
                         <Link to="/contact">
@@ -147,7 +147,10 @@ const Navbar = () => {
                             </span>
                           </button>
                         </Link>
-                        <Link to="/score" className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity">
+                        <Link
+                          to="/score"
+                          className="flex flex-col items-center cursor-pointer gap-2 hover:opacity-70 transition-opacity"
+                        >
                           <button className="cursor-pointer">
                             <div className="w-12 h-12 flex items-center justify-center">
                               {/* <Award className="w-6 h-6" /> */}

@@ -1,6 +1,6 @@
 const Quality = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-3.jpg')] h-[580px] bg-cover bg-center">
+    <div className="relative bg-[url('/src/assets/home-page/jewel-3.jpg')] h-145 bg-cover bg-center">
       {/* Optional dark overlay for readability */}
       <div className="absolute inset-0 bg-black/30" />
 

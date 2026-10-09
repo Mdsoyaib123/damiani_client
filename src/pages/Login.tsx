@@ -45,8 +45,6 @@ const Login = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
 
-
-
   const openModal = (title: string, content: string) => {
     setModalConfig({ isOpen: true, title, content });
   };
@@ -62,16 +60,18 @@ const Login = () => {
         password: data.password,
       }).unwrap();
 
-      dispatch(setCredentials({
-        user: {
-          userId: res.data.userId,
-          role: res.data.role,
-          email: res.data.email,
-          _id: res.data.user_id
-        },
-        token: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
-      }))
+      dispatch(
+        setCredentials({
+          user: {
+            userId: res.data.userId,
+            role: res.data.role,
+            email: res.data.email,
+            _id: res.data.user_id,
+          },
+          token: res.data.accessToken,
+          refreshToken: res.data.refreshToken,
+        }),
+      );
 
       connectSocket(res.data.accessToken);
 
@@ -90,7 +90,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center max-w-[500px] mx-auto h-auto scroll-y-auto">
+    <div className="flex justify-center max-w-125 mx-auto h-auto scroll-y-auto">
       <div className="w-full p-6 shadow-md">
         <h2 className="text-2xl font-semibold text-center">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
@@ -100,7 +100,7 @@ const Login = () => {
               Phone
             </label>
             {/* Input Wrapper */}
-            <div className="flex items-center border-1 border-gray-400 rounded-md focus-within:ring-2 focus-within:ring-blue-500 overflow-hidden">
+            <div className="flex items-center border border-gray-400 rounded-md focus-within:ring-2 focus-within:ring-blue-500 overflow-hidden">
               <CountryCodeSelect
                 value={countryCode}
                 onChange={setCountryCode}
@@ -184,9 +184,7 @@ const Login = () => {
           </span>{" "}
           and{" "}
           <span
-            onClick={() =>
-              openModal("Agreement", "Agreement Content")
-            }
+            onClick={() => openModal("Agreement", "Agreement Content")}
             className="underline text-blue-500 cursor-pointer"
           >
             Agreement

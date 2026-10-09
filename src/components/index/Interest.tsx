@@ -1,6 +1,6 @@
 const Interest = () => {
   return (
-    <div className="bg-[url('/src/assets/home-page/home-img-7.png')]  h-[1020px] bg-cover bg-center flex items-center justify-center"></div>
+    <div className="bg-[url('/src/assets/home-page/home-img-7.png')]  h-255 bg-cover bg-center flex items-center justify-center"></div>
   );
 };
 

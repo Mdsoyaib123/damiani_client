@@ -1,6 +1,6 @@
 const TopPicks = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-6.jpg')] h-[820px] bg-cover bg-center">
+    <div className="relative bg-[url('/src/assets/home-page/jewel-6.jpg')] h-205 bg-cover bg-center">
       {/* Optional overlay for readability */}
       <div className="absolute inset-0 bg-black/25" />
 

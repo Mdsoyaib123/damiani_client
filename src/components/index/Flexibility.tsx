@@ -1,6 +1,6 @@
 const Flexibility = () => {
   return (
-    <div className="relative bg-[url('/src/assets/home-page/jewel-7.jpg')] h-[740px] bg-cover bg-center">
+    <div className="relative bg-[url('/src/assets/home-page/jewel-7.jpg')] h-185 bg-cover bg-center">
       {/* Overlay for better text visibility */}
       <div className="absolute inset-0 bg-black/40" />
 
