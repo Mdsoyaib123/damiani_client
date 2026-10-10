@@ -72,7 +72,7 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="account-details-title"
-                className="w-full max-w-[420px] overflow-hidden border border-neutral-200 bg-white shadow-xl"
+                className="w-full max-w-105 overflow-hidden border border-neutral-200 bg-white shadow-xl"
                 onClick={(event) => event.stopPropagation()}
             >
                 {/* Header */}
@@ -137,7 +137,7 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
                                 </p>
 
                                 <p
-                                    className={`mt-1 break-words text-sm font-medium tabular-nums ${item.valueClass}`}
+                                    className={`mt-1 wrap-break-word text-sm font-medium tabular-nums ${item.valueClass}`}
                                 >
                                     {item.value}
                                 </p>
