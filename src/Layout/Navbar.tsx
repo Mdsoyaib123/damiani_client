@@ -122,7 +122,7 @@ const Navbar = () => {
         } transition-all duration-300 ${
           isLightHeader
             ? "bg-white shadow text-black border-b border-gray-100"
-            : "bg-transparent text-white"
+            : "bg-[#121410] text-white"
         }`}
       >
         <div className="w-full px-4 sm:px-6">
