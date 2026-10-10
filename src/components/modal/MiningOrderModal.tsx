@@ -31,10 +31,10 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="mining-order-title"
-        className="relative w-full max-w-[380px] border border-neutral-200 bg-white px-7 py-9 text-center shadow-2xl sm:px-10 sm:py-11"
+        className="relative w-full max-w-95 border border-neutral-200 bg-white px-7 py-9 text-center shadow-2xl sm:px-10 sm:py-11"
       >
         {/* Status indicator */}
-        <div className="mx-auto flex h-[68px] w-[68px] items-center justify-center border border-amber-300/70 bg-amber-50">
+        <div className="mx-auto flex h-17 w-17 items-center justify-center border border-amber-300/70 bg-amber-50">
           <svg
             className="h-8 w-8 text-amber-700"
             viewBox="0 0 24 24"
@@ -63,13 +63,13 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
           Mining Order
         </h2>
 
-        <p className="mx-auto mt-3 max-w-[260px] text-sm leading-6 text-neutral-500">
+        <p className="mx-auto mt-3 max-w-65 text-sm leading-6 text-neutral-500">
           Please wait while we process your order. This will only take a moment.
         </p>
 
         {/* Progress indicator */}
         <div className="mt-8">
-          <div className="h-[2px] w-full overflow-hidden bg-neutral-100">
+          <div className="h-0.5 w-full overflow-hidden bg-neutral-100">
             <div className="h-full w-1/3 animate-[mining-progress_1.2s_ease-in-out_infinite] bg-amber-600" />
           </div>
 

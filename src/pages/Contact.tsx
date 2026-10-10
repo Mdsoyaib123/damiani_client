@@ -6,14 +6,14 @@ const Contact = () => {
   return (
     <main className="min-h-screen bg-white text-neutral-900">
       {/* Hero — matching the Flexibility design */}
-      <section className="relative h-[60vh] min-h-[480px] w-full overflow-hidden bg-cover bg-center">
+      <section className="relative h-[60vh] min-h-120 w-full overflow-hidden bg-cover bg-center">
         <img
           src={contactImage}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
         <div className="relative z-10 flex h-full flex-col items-start justify-end px-6 pb-10 text-left sm:px-10 sm:pb-14">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-white/75">

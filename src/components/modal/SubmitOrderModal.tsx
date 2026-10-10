@@ -21,7 +21,7 @@ const SubmitOrderModal: React.FC<SubmitOrderModalProps> = ({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="submit-order-title"
-                className="w-full max-w-[400px] border border-neutral-200 bg-white px-7 py-9 shadow-2xl sm:px-9"
+                className="w-full max-w-100 border border-neutral-200 bg-white px-7 py-9 shadow-2xl sm:px-9"
             >
                 {/* Heading */}
                 <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-neutral-500">
