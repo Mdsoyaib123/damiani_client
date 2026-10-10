@@ -20,7 +20,97 @@ import { toast } from "sonner";
 import MiningOrderModal from "@/components/modal/MiningOrderModal";
 import ErrorModal from "@/components/modal/ErrorModal";
 import ErrorModalBlack from "@/components/modal/ErrorModalBlack";
+const TaskSkeleton: React.FC = () => {
+  return (
+    <main className="min-h-screen w-full bg-[#f5f5f3] px-0 sm:px-5 sm:py-6">
+      <div className="mx-auto min-h-screen w-full max-w-[500px] animate-pulse border-x border-neutral-200 bg-[#f5f5f3] text-neutral-900 sm:border">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 px-5 pb-3 pt-5">
+          <div className="h-3 w-9 bg-neutral-200" />
+          <div className="h-3 w-3 bg-neutral-200" />
+          <div className="h-3 w-20 bg-neutral-200" />
+        </nav>
 
+        {/* Page heading */}
+        <header className="border-b border-neutral-200 px-5 pb-5 pt-1">
+          <div className="h-2.5 w-20 bg-neutral-200" />
+
+          <div className="mt-3 flex items-end justify-between gap-3">
+            <div className="h-8 w-44 bg-neutral-200" />
+            <div className="mb-1 h-2.5 w-14 bg-neutral-200" />
+          </div>
+        </header>
+
+        {/* Tabs */}
+        <div className="grid grid-cols-2 border-b border-neutral-200 bg-white">
+          <div className="flex justify-center border-b-2 border-neutral-300 py-3">
+            <div className="h-2.5 w-20 bg-neutral-200" />
+          </div>
+          <div className="flex justify-center py-3">
+            <div className="h-2.5 w-24 bg-neutral-100" />
+          </div>
+        </div>
+
+        {/* Product list heading */}
+        <div className="flex items-center justify-between px-5 py-4">
+          <div className="h-2.5 w-28 bg-neutral-200" />
+          <div className="h-2.5 w-12 bg-neutral-200" />
+        </div>
+
+        {/* Product row skeletons */}
+        <section className="bg-white">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <article
+              key={index}
+              className={`flex items-center gap-3.5 px-5 py-4 ${
+                index !== 4 ? "border-b border-neutral-100" : ""
+              }`}
+            >
+              {/* Number */}
+              <div className="h-3 w-4 shrink-0 bg-neutral-200" />
+
+              {/* Product image */}
+              <div className="h-[68px] w-[68px] shrink-0 bg-[#e9e9e3]" />
+
+              {/* Product details */}
+              <div className="min-w-0 flex-1">
+                <div className="h-3 w-full bg-neutral-200" />
+                <div className="mt-2 h-3 w-4/5 bg-neutral-100" />
+
+                <div className="mt-3 flex items-center gap-1.5">
+                  <div className="h-3 w-3 bg-amber-100" />
+                  <div className="h-2.5 w-20 bg-neutral-100" />
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="h-4 w-4 shrink-0 bg-neutral-100" />
+            </article>
+          ))}
+        </section>
+
+        {/* Bottom action skeleton */}
+        <footer className="border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-6 pt-5">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <div className="h-2.5 w-24 bg-neutral-200" />
+              <div className="mt-2.5 h-4 w-28 bg-neutral-200" />
+            </div>
+
+            <div className="h-1 w-24 bg-neutral-200" />
+          </div>
+
+          <div className="h-[46px] w-full bg-neutral-300" />
+
+          <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+            <div className="h-11 border border-neutral-200 bg-white" />
+            <div className="h-11 border border-neutral-200 bg-white" />
+          </div>
+        </footer>
+      </div>
+    </main>
+  );
+};
 interface TaskItem {
   id: number;
   image: string;
@@ -213,22 +303,15 @@ const Task: React.FC = () => {
   };
 
   if (isLoading && !userData) {
-    return (
-      <div className="mx-auto flex min-h-screen w-full max-w-[500px] items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-900" />
-          <p className="mt-4 text-xs text-neutral-500">Loading...</p>
-        </div>
-      </div>
-    );
+    return <TaskSkeleton />;
   }
 
   return (
-    <main className="relative mx-auto min-h-screen w-full max-w-[500px] bg-white text-neutral-900">
+    <main className="relative mx-auto min-h-screen w-full max-w-[500px] border-x border-neutral-200 bg-[#f5f5f3] text-neutral-900 sm:border">
       {/* Fetching indicator */}
       {isFetching && userData && (
-        <div className="absolute inset-x-0 top-0 z-40 h-0.5 overflow-hidden bg-neutral-100">
-          <div className="h-full w-1/3 animate-pulse bg-neutral-800" />
+        <div className="absolute inset-x-0 top-0 z-40 h-0.5 overflow-hidden bg-neutral-200">
+          <div className="h-full w-1/3 animate-pulse bg-neutral-900" />
         </div>
       )}
 
@@ -245,7 +328,7 @@ const Task: React.FC = () => {
           Home
         </button>
 
-        <ChevronRight className="h-3 w-3 text-neutral-300" />
+        <ChevronRight className="h-3 w-3 text-neutral-400" />
 
         <span className="text-neutral-900">Go Shopping</span>
       </nav>
@@ -261,14 +344,14 @@ const Task: React.FC = () => {
             Juwelo <span className="font-semibold">Order</span>
           </h1>
 
-          <span className="pb-1 text-[10px] tracking-wide text-neutral-400">
+          <span className="pb-1 text-[10px] tracking-wide text-neutral-500">
             {tasks.length} ITEMS
           </span>
         </div>
       </header>
 
       {/* Tabs */}
-      <div className="grid grid-cols-2 border-b border-neutral-200">
+      <div className="grid grid-cols-2 border-b border-neutral-200 bg-white">
         <button
           type="button"
           className="border-b-2 border-neutral-900 py-3 text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-950"
@@ -278,7 +361,7 @@ const Task: React.FC = () => {
 
         <button
           type="button"
-          className="border-b-2 border-transparent py-3 text-[10px] font-normal uppercase tracking-[0.18em] text-neutral-400 transition-colors hover:text-neutral-900"
+          className="border-b-2 border-transparent py-3 text-[10px] font-normal uppercase tracking-[0.18em] text-neutral-500 transition-colors hover:text-neutral-900"
         >
           Description
         </button>
@@ -286,18 +369,18 @@ const Task: React.FC = () => {
 
       {/* Product list */}
       <section aria-label="Product collection">
-        <div className="flex items-center justify-between px-5 py-3">
-          <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-neutral-500">
+        <div className="flex items-center justify-between px-5 py-4">
+          <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-neutral-600">
             Selected products
           </p>
-          <p className="text-[10px] text-neutral-400">01 — 05</p>
+          <p className="text-[10px] text-neutral-500">01 — 05</p>
         </div>
 
-        <div>
+        <div className="bg-white">
           {tasks.map((task, index) => (
             <article
               key={task.id}
-              className={`group flex items-center gap-3.5 px-5 py-4 transition-colors hover:bg-neutral-50/70 ${
+              className={`group flex items-center gap-3.5 px-5 py-4 transition-colors hover:bg-neutral-50 ${
                 index !== tasks.length - 1
                   ? "border-b border-neutral-100"
                   : ""
@@ -307,14 +390,14 @@ const Task: React.FC = () => {
                 {String(task.id).padStart(2, "0")}
               </span>
 
-              <div className="h-[68px] w-[68px] shrink-0 overflow-hidden bg-neutral-50">
+              <div className="h-[68px] w-[68px] shrink-0 overflow-hidden bg-[#f5f5f3]">
                 <img
                   src={task.image}
                   alt={task.title}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   onError={(event) => {
                     event.currentTarget.src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68'%3E%3Crect fill='%23f5f5f5' width='68' height='68'/%3E%3C/svg%3E";
+                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68'%3E%3Crect fill='%23f5f5f3' width='68' height='68'/%3E%3C/svg%3E";
                   }}
                 />
               </div>
@@ -338,7 +421,7 @@ const Task: React.FC = () => {
 
               <ChevronRight
                 aria-hidden="true"
-                className="h-4 w-4 shrink-0 text-neutral-300 transition-colors group-hover:text-neutral-700"
+                className="h-4 w-4 shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-800"
                 strokeWidth={1.5}
               />
             </article>
@@ -347,19 +430,19 @@ const Task: React.FC = () => {
       </section>
 
       {/* Bottom actions */}
-      <footer className="border-t border-neutral-200 px-5 pb-6 pt-5">
+      <footer className="border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-6 pt-5">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.17em] text-neutral-500">
+            <p className="text-[10px] uppercase tracking-[0.17em] text-neutral-600">
               Order progress
             </p>
             <p className="mt-1 text-sm font-medium text-neutral-900">
               {userData?.data?.completedOrdersCount || 0}
-              <span className="font-normal text-neutral-400"> / 25 orders</span>
+              <span className="font-normal text-neutral-500"> / 25 orders</span>
             </p>
           </div>
 
-          <div className="h-1 w-24 overflow-hidden bg-neutral-100">
+          <div className="h-1 w-24 overflow-hidden bg-neutral-200">
             <div
               className="h-full bg-neutral-900 transition-all"
               style={{
@@ -387,14 +470,14 @@ const Task: React.FC = () => {
           <button
             type="button"
             onClick={() => setOpenAccountModal(true)}
-            className="border border-neutral-200 py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
+            className="border border-neutral-300 bg-white py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
           >
             Account
           </button>
 
           <Link
             to="/order-record"
-            className="flex items-center justify-center border border-neutral-200 py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
+            className="flex items-center justify-center border border-neutral-300 bg-white py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
           >
             Records
           </Link>
