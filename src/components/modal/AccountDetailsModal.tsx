@@ -26,90 +26,136 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
 }) => {
     if (!open) return null;
 
-    // console.log(data, "mahimmmm")
-
     const formatMoney = (amount: number) =>
-        Number(amount || 0).toLocaleString('en-US', {
+        Number(amount || 0).toLocaleString("en-US", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
         });
 
+    const details = [
+        {
+            label: "Available Balance",
+            value: formatMoney(data?.userBalance),
+            valueClass: "text-neutral-950",
+        },
+        {
+            label: "Daily Profit",
+            value: formatMoney(data?.dailyProfit),
+            valueClass: "text-emerald-700",
+        },
+        {
+            label: "Insufficient Balance",
+            value: formatMoney(data?.outOfBalance),
+            valueClass:
+                data?.outOfBalance !== 0
+                    ? "text-red-600"
+                    : "text-neutral-800",
+        },
+        {
+            label: "Current Mining Order",
+            value: `${data?.completedOrdersCount} / 25`,
+            valueClass: "text-neutral-950",
+        },
+        {
+            label: "Trial Amount",
+            value: formatMoney(data?.trialRoundBalance),
+            valueClass: "text-neutral-950",
+        },
+    ];
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 ">
-            <div className="w-full max-w-md bg-white rounded-xl shadow-md">
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6"
+            onClick={onClose}
+        >
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="account-details-title"
+                className="w-full max-w-[420px] overflow-hidden border border-neutral-200 bg-white shadow-xl"
+                onClick={(event) => event.stopPropagation()}
+            >
                 {/* Header */}
-                <div className="flex items-center justify-between px-5 py-4 bg-slate-300 rounded-t-xl">
-                    <h2 className="text-lg font-semibold text-center mx-auto">Account Details</h2>
-                    {/* <button onClick={onClose}>
-                        <X className="w-5 h-5 text-gray-600" />
-                    </button> */}
-                </div>
+                <header className="border-b border-neutral-200 px-5 py-5 sm:px-6">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+                        Account Overview
+                    </p>
 
-                {/* Content */}
-                <div className="p-5 space-y-4">
-                    {/* Full width fields */}
-                    <div className="space-y-2">
-                        {/* <div>
-                            <p className="text-xs text-gray-500">Name</p>
-                            <p className="font-medium">{data.name}</p>
-                        </div> */}
+                    <div className="mt-2 flex items-center justify-between gap-3">
+                        <h2
+                            id="account-details-title"
+                            className="text-xl font-medium tracking-tight text-neutral-950"
+                        >
+                            Account Details
+                        </h2>
 
-
+                        <span className="text-xs text-neutral-400">
+                            #{data?.userId}
+                        </span>
                     </div>
+                </header>
 
-                    {/* Two column layout */}
-                    <div className="grid grid-cols-2 gap-4 pt-2">
-                        {/* <div>
-                            <p className="text-xs text-gray-500">Orders Quantity</p>
-                            <p className="font-medium">{data.quantityOfOrders}</p>
-                        </div> */}
+                {/* Primary balance */}
+                <section className="px-5 py-5 sm:px-6">
+                    <p className="text-xs text-neutral-500">
+                        Available Balance
+                    </p>
 
-                        <div>
-                            <p className="text-sm text-gray-700 font-bold">Available Balance</p>
-                            <p className="font-semibold text-gray-700">
-                                {formatMoney(data?.userBalance)}
-                            </p>
-                        </div>
+                    <p className="mt-2 text-3xl font-light tracking-tight tabular-nums text-neutral-950">
+                        {formatMoney(data?.userBalance)}
+                    </p>
 
-                        <div>
-                            <p className="text-sm text-gray-700 font-bold">Daily Profit</p>
-                            <p className="font-semibold text-gray-700">
-                                {formatMoney(data?.dailyProfit)}
-                            </p>
-                        </div>
+                    <div className="mt-4 flex items-center justify-between border-t border-neutral-100 pt-3">
+                        <span className="text-xs text-neutral-500">
+                            Daily Profit
+                        </span>
 
-                        {/* <div>
-                            <p className="text-xs text-gray-500">Total Recharge</p>
-                            <p className="font-medium">{data.memberTotalRecharge}</p>
-                        </div> */}
-
-                        <div>
-                            <p className="text-sm text-gray-700 font-bold">Insufficient Balance</p>
-                            <p className={`font-semibold ${data?.outOfBalance > 0 || data?.outOfBalance < 0 ? "text-red-500" : "text-gray-700"}`}>{formatMoney(data?.outOfBalance)}</p>
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-700 font-bold">Current Mining Order</p>
-                            <p className="text-gray-700 font-semibold ">
-                                {data?.completedOrdersCount} / 25
-                            </p>
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-700 font-bold">Trial Amount</p>
-                            <p className="font-semibold text-gray-700">{formatMoney(data?.trialRoundBalance)}</p>
-                        </div>
+                        <span className="text-sm font-medium tabular-nums text-emerald-700">
+                            {formatMoney(data?.dailyProfit)}
+                        </span>
                     </div>
-                </div>
+                </section>
+
+                {/* Account metrics */}
+                <section className="border-t border-neutral-200 px-5 sm:px-6">
+                    <div className="grid grid-cols-2">
+                        {details.slice(2).map((item, index) => (
+                            <div
+                                key={item.label}
+                                className={`min-w-0 py-4 ${
+                                    index % 2 === 0
+                                        ? "border-r border-neutral-200 pr-3"
+                                        : "pl-4"
+                                } ${
+                                    index < 2
+                                        ? "border-b border-neutral-200"
+                                        : ""
+                                }`}
+                            >
+                                <p className="text-xs leading-5 text-neutral-500">
+                                    {item.label}
+                                </p>
+
+                                <p
+                                    className={`mt-1 break-words text-sm font-medium tabular-nums ${item.valueClass}`}
+                                >
+                                    {item.value}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
                 {/* Footer */}
-                <div className="px-5 py-4">
+                <footer className="border-t border-neutral-200 px-5 py-4 sm:px-6">
                     <button
+                        type="button"
                         onClick={onClose}
-                        className="w-full py-2 bg-black cursor-pointer text-white rounded hover:bg-gray-900"
+                        className="h-11 w-full bg-neutral-950 px-4 text-sm font-medium text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-2"
                     >
                         Close
                     </button>
-                </div>
+                </footer>
             </div>
         </div>
     );
