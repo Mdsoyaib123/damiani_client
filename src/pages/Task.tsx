@@ -1,116 +1,31 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronRight, Star, Pickaxe } from "lucide-react";
+
 import prod1 from "@/assets/product/prod-1.webp";
 import prod2 from "@/assets/product/prod-2.webp";
 import prod3 from "@/assets/product/prod-3.webp";
 import prod4 from "@/assets/product/prod-4.webp";
 import prod5 from "@/assets/product/prod-5.webp";
+
 import AccountDetailsModal from "@/components/modal/AccountDetailsModal";
 import PackageSelectionModal from "@/components/modal/PackageSelectionModal";
 import MysteryBoxModal from "@/components/modal/MysteryBoxModal";
 import MysteryBoxRewardModal from "@/components/modal/MysteryBoxRewardModal";
+import MiningOrderModal from "@/components/modal/MiningOrderModal";
+import ErrorModal from "@/components/modal/ErrorModal";
+import ErrorModalBlack from "@/components/modal/ErrorModalBlack";
+
 import {
   useGetSingleUserQuery,
   useUpdateSelectedPackageMutation,
   useRemoveMysteryRewardMutation,
   useMarkMysteryBoxAsSeenMutation,
 } from "@/store/api/user/userApi";
+
 import { toast } from "sonner";
-import MiningOrderModal from "@/components/modal/MiningOrderModal";
-import ErrorModal from "@/components/modal/ErrorModal";
-import ErrorModalBlack from "@/components/modal/ErrorModalBlack";
-const TaskSkeleton: React.FC = () => {
-  return (
-    <main className="min-h-screen w-full bg-[#f5f5f3] px-0 sm:px-5 sm:py-6">
-      <div className="mx-auto min-h-screen w-full max-w-[500px] animate-pulse border-x border-neutral-200 bg-[#f5f5f3] text-neutral-900 sm:border">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 px-5 pb-3 pt-5">
-          <div className="h-3 w-9 bg-neutral-200" />
-          <div className="h-3 w-3 bg-neutral-200" />
-          <div className="h-3 w-20 bg-neutral-200" />
-        </nav>
 
-        {/* Page heading */}
-        <header className="border-b border-neutral-200 px-5 pb-5 pt-1">
-          <div className="h-2.5 w-20 bg-neutral-200" />
-
-          <div className="mt-3 flex items-end justify-between gap-3">
-            <div className="h-8 w-44 bg-neutral-200" />
-            <div className="mb-1 h-2.5 w-14 bg-neutral-200" />
-          </div>
-        </header>
-
-        {/* Tabs */}
-        <div className="grid grid-cols-2 border-b border-neutral-200 bg-white">
-          <div className="flex justify-center border-b-2 border-neutral-300 py-3">
-            <div className="h-2.5 w-20 bg-neutral-200" />
-          </div>
-          <div className="flex justify-center py-3">
-            <div className="h-2.5 w-24 bg-neutral-100" />
-          </div>
-        </div>
-
-        {/* Product list heading */}
-        <div className="flex items-center justify-between px-5 py-4">
-          <div className="h-2.5 w-28 bg-neutral-200" />
-          <div className="h-2.5 w-12 bg-neutral-200" />
-        </div>
-
-        {/* Product row skeletons */}
-        <section className="bg-white">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <article
-              key={index}
-              className={`flex items-center gap-3.5 px-5 py-4 ${
-                index !== 4 ? "border-b border-neutral-100" : ""
-              }`}
-            >
-              {/* Number */}
-              <div className="h-3 w-4 shrink-0 bg-neutral-200" />
-
-              {/* Product image */}
-              <div className="h-[68px] w-[68px] shrink-0 bg-[#e9e9e3]" />
-
-              {/* Product details */}
-              <div className="min-w-0 flex-1">
-                <div className="h-3 w-full bg-neutral-200" />
-                <div className="mt-2 h-3 w-4/5 bg-neutral-100" />
-
-                <div className="mt-3 flex items-center gap-1.5">
-                  <div className="h-3 w-3 bg-amber-100" />
-                  <div className="h-2.5 w-20 bg-neutral-100" />
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="h-4 w-4 shrink-0 bg-neutral-100" />
-            </article>
-          ))}
-        </section>
-
-        {/* Bottom action skeleton */}
-        <footer className="border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-6 pt-5">
-          <div className="mb-4 flex items-center justify-between">
-            <div>
-              <div className="h-2.5 w-24 bg-neutral-200" />
-              <div className="mt-2.5 h-4 w-28 bg-neutral-200" />
-            </div>
-
-            <div className="h-1 w-24 bg-neutral-200" />
-          </div>
-
-          <div className="h-[46px] w-full bg-neutral-300" />
-
-          <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-            <div className="h-11 border border-neutral-200 bg-white" />
-            <div className="h-11 border border-neutral-200 bg-white" />
-          </div>
-        </footer>
-      </div>
-    </main>
-  );
-};
 interface TaskItem {
   id: number;
   image: string;
@@ -170,9 +85,9 @@ const Task: React.FC = () => {
   const [openErrorModalBlack, setOpenErrorModalBlack] = useState(false);
   const [, setShouldCheckOrder] = useState(false);
 
-  // Fetch user data
+  // User data
   const id = localStorage.getItem("userId");
-  const userId = id ? parseInt(id) : 0;
+  const userId = id ? parseInt(id, 10) : 0;
 
   const {
     data: userData,
@@ -187,10 +102,13 @@ const Task: React.FC = () => {
 
   const [updatePackage, { isLoading: isUpdating }] =
     useUpdateSelectedPackageMutation();
+
   const [removeMysteryReward] = useRemoveMysteryRewardMutation();
   const [markMysteryBoxAsSeen] = useMarkMysteryBoxAsSeenMutation();
 
   const user = userData?.data;
+  const completedOrders = user?.completedOrdersCount || 0;
+  const orderProgress = Math.min((completedOrders / 25) * 100, 100);
 
   useEffect(() => {
     if (userId) {
@@ -198,9 +116,8 @@ const Task: React.FC = () => {
     }
   }, [userId, refetch]);
 
-  // Check for mystery reward on component mount
   useEffect(() => {
-    if (user && user.mysteryReward && user.mysteryReward > 0) {
+    if (user?.mysteryReward && user.mysteryReward > 0) {
       setActiveMysteryReward(user.mysteryReward);
       setOpenMysteryRewardModal(true);
     }
@@ -240,6 +157,7 @@ const Task: React.FC = () => {
           ...productWithMysteryBox.mysterybox,
           productId: productWithMysteryBox.productId,
         });
+
         setOpenMysteryBoxModal(true);
         return;
       }
@@ -281,8 +199,10 @@ const Task: React.FC = () => {
   const handlePackageSelection = async (amount: number) => {
     try {
       await updatePackage({ userId, amount }).unwrap();
+
       setOpenPackageModal(false);
       toast.success("Package selected successfully");
+
       setOpenMiningModal(true);
       setShouldCheckOrder(true);
     } catch (error) {
@@ -294,6 +214,7 @@ const Task: React.FC = () => {
   const handleMysteryRewardContinue = async () => {
     try {
       await removeMysteryReward(userId).unwrap();
+
       setOpenMysteryRewardModal(false);
       toast.success("Mystery reward claimed successfully!");
     } catch (error) {
@@ -303,188 +224,192 @@ const Task: React.FC = () => {
   };
 
   if (isLoading && !userData) {
-    return <TaskSkeleton />;
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f3]">
+        <div className="text-center">
+          <div className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-900" />
+          <p className="mt-4 text-sm text-neutral-500">Loading collection...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <main className="relative mx-auto min-h-screen w-full max-w-[500px] border-x border-neutral-200 bg-[#f5f5f3] text-neutral-900 sm:border">
-      {/* Fetching indicator */}
+    <main className="relative min-h-screen bg-[#f5f5f3] text-neutral-900">
+      {/* Updating indicator */}
       {isFetching && userData && (
-        <div className="absolute inset-x-0 top-0 z-40 h-0.5 overflow-hidden bg-neutral-200">
-          <div className="h-full w-1/3 animate-pulse bg-neutral-900" />
+        <div className="fixed left-0 right-0 top-0 z-50 mx-auto max-w-[520px] bg-neutral-900 py-1 text-center text-[10px] uppercase tracking-widest text-white">
+          Updating...
         </div>
       )}
 
-      {/* Breadcrumb */}
-      <nav
-        aria-label="Breadcrumb"
-        className="flex items-center gap-2 px-5 pb-3 pt-5 text-[11px] text-neutral-500"
-      >
-        <button
-          type="button"
-          onClick={() => navigate("/")}
-          className="transition-colors hover:text-neutral-950"
-        >
-          Home
-        </button>
-
-        <ChevronRight className="h-3 w-3 text-neutral-400" />
-
-        <span className="text-neutral-900">Go Shopping</span>
-      </nav>
-
-      {/* Page heading */}
-      <header className="border-b border-neutral-200 px-5 pb-5 pt-1">
-        <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500">
-          Collection
-        </p>
-
-        <div className="mt-2 flex items-end justify-between gap-3">
-          <h1 className="text-[27px] font-light leading-tight tracking-tight text-neutral-950">
-            Juwelo <span className="font-semibold">Order</span>
-          </h1>
-
-          <span className="pb-1 text-[10px] tracking-wide text-neutral-500">
-            {tasks.length} ITEMS
-          </span>
-        </div>
-      </header>
-
-      {/* Tabs */}
-      <div className="grid grid-cols-2 border-b border-neutral-200 bg-white">
-        <button
-          type="button"
-          className="border-b-2 border-neutral-900 py-3 text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-950"
-        >
-          Collection
-        </button>
-
-        <button
-          type="button"
-          className="border-b-2 border-transparent py-3 text-[10px] font-normal uppercase tracking-[0.18em] text-neutral-500 transition-colors hover:text-neutral-900"
-        >
-          Description
-        </button>
-      </div>
-
-      {/* Product list */}
-      <section aria-label="Product collection">
-        <div className="flex items-center justify-between px-5 py-4">
-          <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-neutral-600">
-            Selected products
-          </p>
-          <p className="text-[10px] text-neutral-500">01 — 05</p>
-        </div>
-
-        <div className="bg-white">
-          {tasks.map((task, index) => (
-            <article
-              key={task.id}
-              className={`group flex items-center gap-3.5 px-5 py-4 transition-colors hover:bg-neutral-50 ${
-                index !== tasks.length - 1
-                  ? "border-b border-neutral-100"
-                  : ""
-              }`}
-            >
-              <span className="w-4 shrink-0 text-[10px] tabular-nums text-neutral-400">
-                {String(task.id).padStart(2, "0")}
-              </span>
-
-              <div className="h-[68px] w-[68px] shrink-0 overflow-hidden bg-[#f5f5f3]">
-                <img
-                  src={task.image}
-                  alt={task.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                  onError={(event) => {
-                    event.currentTarget.src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68'%3E%3Crect fill='%23f5f5f3' width='68' height='68'/%3E%3C/svg%3E";
-                  }}
-                />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <h2 className="line-clamp-2 text-[12px] font-medium leading-[1.6] text-neutral-900">
-                  {task.title}
-                </h2>
-
-                <div className="mt-2 flex items-center gap-1.5">
-                  <Star
-                    aria-hidden="true"
-                    className="h-3 w-3 shrink-0 fill-amber-500 text-amber-500"
-                    strokeWidth={1.5}
-                  />
-                  <span className="text-[10px] text-neutral-500">
-                    {task.reviews}
-                  </span>
-                </div>
-              </div>
-
-              <ChevronRight
-                aria-hidden="true"
-                className="h-4 w-4 shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-800"
-                strokeWidth={1.5}
-              />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Bottom actions */}
-      <footer className="border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-6 pt-5">
-        <div className="mb-4 flex items-center justify-between">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.17em] text-neutral-600">
-              Order progress
+      <div className="mx-auto max-w-[520px] px-5 pb-6 sm:px-6">
+        {/* Header */}
+        <header className="flex items-center justify-between border-b border-neutral-200 pb-5 pt-5">
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="text-left"
+          >
+            <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+              JUWELO
             </p>
-            <p className="mt-1 text-sm font-medium text-neutral-900">
-              {userData?.data?.completedOrdersCount || 0}
-              <span className="font-normal text-neutral-500"> / 25 orders</span>
-            </p>
-          </div>
+            <h1 className="mt-1 text-2xl font-light tracking-tight text-neutral-900">
+              Mining <span className="font-semibold">Order</span>
+            </h1>
+          </button>
 
-          <div className="h-1 w-24 overflow-hidden bg-neutral-200">
-            <div
-              className="h-full bg-neutral-900 transition-all"
-              style={{
-                width: `${Math.min(
-                  100,
-                  ((userData?.data?.completedOrdersCount || 0) / 25) * 100,
-                )}%`,
-              }}
-            />
-          </div>
-        </div>
-
-        <button
-          type="button"
-          onClick={handleStartClick}
-          className="w-full bg-neutral-950 px-4 py-3.5 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-neutral-800"
-        >
-          Mining Order
-          <span className="ml-2 font-normal tracking-normal text-white/60">
-            ({userData?.data?.completedOrdersCount || 0} / 25)
-          </span>
-        </button>
-
-        <div className="mt-2.5 grid grid-cols-2 gap-2.5">
           <button
             type="button"
             onClick={() => setOpenAccountModal(true)}
-            className="border border-neutral-300 bg-white py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
+            className="border border-neutral-300 px-3.5 py-2.5 text-[10px] font-medium uppercase tracking-[0.15em] transition-colors hover:border-neutral-900"
           >
             Account
           </button>
+        </header>
 
-          <Link
-            to="/order-record"
-            className="flex items-center justify-center border border-neutral-300 bg-white py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-900 transition-colors hover:border-neutral-900"
+        {/* Progress */}
+        <section className="border-b border-neutral-200 py-5">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+                Order progress
+              </p>
+
+              <p className="mt-2 text-3xl font-light tracking-tight tabular-nums">
+                {String(completedOrders).padStart(2, "0")}
+                <span className="ml-1 text-base text-neutral-400">/ 25</span>
+              </p>
+            </div>
+
+            <p className="pb-1 text-xs text-neutral-500">
+              {Math.round(orderProgress)}% completed
+            </p>
+          </div>
+
+          <div
+            className="mt-4 h-1 bg-neutral-200"
+            role="progressbar"
+            aria-label="Order progress"
+            aria-valuemin={0}
+            aria-valuemax={25}
+            aria-valuenow={completedOrders}
           >
-            Records
-          </Link>
-        </div>
-      </footer>
+            <div
+              className="h-full bg-neutral-900 transition-all duration-300"
+              style={{ width: `${orderProgress}%` }}
+            />
+          </div>
+        </section>
 
-      {/* Modals */}
+        {/* Collection */}
+        <section className="pt-5">
+          <div className="mb-2 flex items-end justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+                Explore your items
+              </p>
+              <h2 className="mt-1 text-lg font-medium tracking-tight">
+                Collection
+              </h2>
+            </div>
+
+            <span className="pb-1 text-xs text-neutral-500">
+              {String(tasks.length).padStart(2, "0")} items
+            </span>
+          </div>
+
+          <div className="divide-y divide-neutral-200">
+            {tasks.map((task) => (
+              <article
+                key={task.id}
+                className="flex items-center gap-3 py-4"
+              >
+                <span className="w-4 shrink-0 text-[10px] tabular-nums text-neutral-400">
+                  {String(task.id).padStart(2, "0")}
+                </span>
+
+                <div className="h-[66px] w-[66px] shrink-0 bg-[#ebeae6] p-1.5">
+                  <img
+                    src={task.image}
+                    alt={task.title}
+                    className="h-full w-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='66' height='66'%3E%3Crect fill='%23ebeae6' width='66' height='66'/%3E%3C/svg%3E";
+                    }}
+                  />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xs font-medium leading-5 text-neutral-900">
+                    {task.title}
+                  </h3>
+
+                  <div className="mt-1.5 flex items-center gap-1.5">
+                    <Star
+                      size={11}
+                      className="shrink-0 fill-amber-500 text-amber-500"
+                    />
+                    <span className="text-[10px] text-neutral-500">
+                      {task.reviews}
+                    </span>
+                  </div>
+                </div>
+
+                <ChevronRight
+                  size={15}
+                  className="shrink-0 text-neutral-400"
+                />
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Main action — original position after the collection */}
+        <section className="mt-2 border-t border-neutral-200 pt-5">
+          <button
+            type="button"
+            onClick={handleStartClick}
+            className="flex w-full items-center justify-between bg-black px-4 py-4 text-white transition-colors hover:bg-neutral-800"
+          >
+            <span className="flex items-center gap-3">
+              <Pickaxe className="h-5 w-5" strokeWidth={1.6} />
+
+              <span className="text-left">
+                <span className="block text-[11px] font-medium uppercase tracking-[0.18em]">
+                  Mining Order
+                </span>
+                <span className="mt-1 block text-[10px] text-white/60">
+                  {completedOrders} / 25 orders completed
+                </span>
+              </span>
+            </span>
+
+            <ChevronRight className="h-4 w-4 text-white/70" />
+          </button>
+
+          {/* Secondary actions */}
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => setOpenAccountModal(true)}
+              className="border border-neutral-300 py-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+            >
+              Account
+            </button>
+
+            <Link
+              to="/order-record"
+              className="border border-neutral-300 py-3 text-center text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+            >
+              Records
+            </Link>
+          </div>
+        </section>
+      </div>
+
+      {/* Account modal */}
       <AccountDetailsModal
         open={openAccountModal}
         onClose={() => {
@@ -494,6 +419,7 @@ const Task: React.FC = () => {
         data={accountDetailsData}
       />
 
+      {/* Package selection */}
       <PackageSelectionModal
         open={openPackageModal}
         onClose={() => setOpenPackageModal(false)}
@@ -502,6 +428,7 @@ const Task: React.FC = () => {
         isLoading={isUpdating}
       />
 
+      {/* Mystery box */}
       {mysteryBoxData && (
         <MysteryBoxModal
           open={openMysteryBoxModal}
@@ -513,10 +440,7 @@ const Task: React.FC = () => {
                   productId: mysteryBoxData.productId,
                 }).unwrap();
               } catch (error) {
-                console.error(
-                  "Failed to mark mystery box as seen:",
-                  error,
-                );
+                console.error("Failed to mark mystery box as seen:", error);
               }
             }
 
@@ -528,6 +452,7 @@ const Task: React.FC = () => {
         />
       )}
 
+      {/* Mystery reward */}
       {activeMysteryReward && (
         <MysteryBoxRewardModal
           open={openMysteryRewardModal}
@@ -546,11 +471,13 @@ const Task: React.FC = () => {
         />
       )}
 
+      {/* Mining */}
       <MiningOrderModal
         open={openMiningModal}
         setOpen={setOpenMiningModal}
       />
 
+      {/* Errors */}
       <ErrorModal
         isOpen={openErrorModal}
         message={errorMessage}
