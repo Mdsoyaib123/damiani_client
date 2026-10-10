@@ -252,7 +252,7 @@ const Task: React.FC = () => {
             className="text-left"
           >
             <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-              Damiani
+              JUWELO
             </p>
             <h1 className="mt-1 text-2xl font-light tracking-tight text-neutral-900">
               Mining <span className="font-semibold">Order</span>
