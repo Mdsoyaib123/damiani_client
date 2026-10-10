@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Pickaxe } from "lucide-react";
+import bgVideo from "@/assets/video/INK4883_DAMIANI_ICONS_CAMPAIGN_DUO_15s_9x16_V11_CLEAN_1920p.mp4";
 
 const Grab = () => {
   const navigate = useNavigate();
@@ -10,25 +11,38 @@ const Grab = () => {
   };
 
   return (
-    <section className="relative isolate flex h-screen w-full items-center justify-center overflow-hidden text-center">
-      {/* Responsive background video covering full height and width */}
-      <div className="absolute inset-0 -z-20 overflow-hidden">
+    <section className="relative isolate flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden bg-black text-center">
+      {/* Responsive local background video */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          src={bgVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Previous Vimeo iframe */}
+        {/*
         <iframe
           src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
           title="Damiani background video"
           allow="autoplay; fullscreen; picture-in-picture"
           className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
           style={{
-            width: "177.77777778vh", /* 16:9 aspect ratio: 16/9 = 1.7777 */
+            width: "177.77777778vh",
             height: "100vh",
             minWidth: "100%",
-            minHeight: "56.25vw", /* 9/16 aspect ratio */
+            minHeight: "56.25vw",
           }}
         />
+        */}
       </div>
 
       {/* Cinematic overlay */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/85 via-black/30 to-black/10" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
 
       {/* Content */}
       <div className="relative z-20 flex h-full w-full flex-col items-center justify-end px-5 pb-12 sm:px-6 sm:pb-16 md:pb-20">
