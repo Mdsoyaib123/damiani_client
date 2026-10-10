@@ -139,7 +139,7 @@ const Score = () => {
           </p>
 
           <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
-            <h1 className="text-3xl font-light tracking-[-0.045em] sm:text-4xl">
+            <h1 className="text-2xl font-light tracking-[-0.045em]">
               Credit score
             </h1>
 
@@ -150,9 +150,9 @@ const Score = () => {
         </header>
 
         {/* Score overview */}
-        <section className="grid grid-cols-1 overflow-hidden border border-[#e8e6df] bg-white md:grid-cols-[0.85fr_1.15fr]">
+        <section className="grid grid-cols-1 overflow-hidden border border-[#e8e6df] bg-white">
           {/* Score details */}
-          <div className="flex flex-col justify-between border-b border-[#e8e6df] p-6 sm:p-8 md:border-b-0 md:border-r lg:p-9">
+          <div className="flex flex-col justify-between border-b border-[#e8e6df] p-6 sm:p-8">
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#77796f]">
                 Your current score
@@ -326,7 +326,7 @@ const Score = () => {
             </svg>
 
             {/* Range legend */}
-            <div className="mt-2 grid w-full max-w-[400px] grid-cols-5 gap-2">
+            <div className="mt-2 grid w-full max-w-100 grid-cols-5 gap-2">
               {[
                 { label: "Low", color: "#e45b55" },
                 { label: "Fair", color: "#f0a54a" },
@@ -336,7 +336,7 @@ const Score = () => {
               ].map((item) => (
                 <div key={item.label} className="min-w-0 text-center">
                   <span
-                    className="mx-auto mb-2 block h-[3px] w-full"
+                    className="mx-auto mb-2 block h-0.75 w-full"
                     style={{ backgroundColor: item.color }}
                   />
 
