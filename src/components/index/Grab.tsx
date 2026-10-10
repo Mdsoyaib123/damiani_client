@@ -27,7 +27,7 @@ const Grab = () => {
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-end p-8">
         <h1 className="mb-3 text-3xl font-light text-white md:text-4xl">
           Do more with{" "}
-          <span className="font-extrabold uppercase text-golden">Juwelo</span>
+          <span className="font-extrabold uppercase text-golden">Damiani</span>
         </h1>
 
         <p className="mb-6 max-w-xl text-sm font-normal leading-relaxed text-white/90 md:text-base">
