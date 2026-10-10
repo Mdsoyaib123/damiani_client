@@ -95,7 +95,7 @@ const Login = () => {
             Freedom · Member access
           </p>
 
-          <h1 className="mt-2.5 text-[30px] font-light leading-tight tracking-[-0.05em]">
+          <h1 className="mt-2.5 text-[30px] font-light leading-tight tracking-tighter">
             Welcome back.
           </h1>
 
@@ -117,7 +117,7 @@ const Login = () => {
 
             <div className="flex h-9 w-9 items-center justify-center border border-[#e6e4dc] bg-[#faf9f6]">
               <ShieldCheck
-                className="h-[18px] w-[18px] text-[#55735d]"
+                className="h-4.5 w-4.5 text-[#55735d]"
                 strokeWidth={1.4}
               />
             </div>
