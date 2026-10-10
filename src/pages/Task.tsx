@@ -238,12 +238,12 @@ const Task: React.FC = () => {
     <main className="relative min-h-screen bg-[#f5f5f3] text-neutral-900">
       {/* Updating indicator */}
       {isFetching && userData && (
-        <div className="fixed left-0 right-0 top-0 z-50 mx-auto max-w-[520px] bg-neutral-900 py-1 text-center text-[10px] uppercase tracking-widest text-white">
+        <div className="fixed left-0 right-0 top-0 z-50 mx-auto max-w-130 bg-neutral-900 py-1 text-center text-[10px] uppercase tracking-widest text-white">
           Updating...
         </div>
       )}
 
-      <div className="mx-auto max-w-[520px] px-5 pb-6 sm:px-6">
+      <div className="mx-auto max-w-130 px-5 pb-6 sm:px-6">
         {/* Header */}
         <header className="flex items-center justify-between border-b border-neutral-200 pb-5 pt-5">
           <button
@@ -329,7 +329,7 @@ const Task: React.FC = () => {
                   {String(task.id).padStart(2, "0")}
                 </span>
 
-                <div className="h-[66px] w-[66px] shrink-0 bg-[#ebeae6] p-1.5">
+                <div className="h-16.5 w-16.5 shrink-0 bg-[#ebeae6] p-1.5">
                   <img
                     src={task.image}
                     alt={task.title}
