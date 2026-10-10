@@ -275,7 +275,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="mt-2 flex h-11 w-full items-center justify-center gap-2 bg-[#292b25] px-4 text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#41463a] disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-2 flex h-11 w-full items-center justify-center gap-2 bg-black px-4 text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#41463a] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? (
                 "Creating account..."
