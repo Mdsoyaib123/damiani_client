@@ -1,4 +1,3 @@
-// src/pages/CashOut.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Wallet, CheckCircle2, Loader2 } from "lucide-react";
