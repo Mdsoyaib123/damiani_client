@@ -12,7 +12,7 @@ const getSocketUrl = () => {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
     try {
         const url = new URL(apiUrl);
-        return url.origin; // Returns just "https://api.juweloonline.com"
+        return url.origin; // Returns just "https://api.Damianionline.com"
     } catch {
         return apiUrl; // Fallback if URL parsing fails
     }

@@ -15,7 +15,7 @@ const Grab = () => {
 
       <iframe
         src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
-        title="Juwelo background video"
+        title="Damiani background video"
         allow="autoplay; fullscreen; picture-in-picture"
         className="pointer-events-none absolute left-1/2 top-1/2 h-screen w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
       />

@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className="w-full bg-[#121410] text-gray-300 pt-10 pb-8 px-6 border-t border-white/10 flex flex-col items-center text-center mt-auto">
       {/* Logo & Tagline */}
       <div className="flex flex-col items-center mb-6">
-        <img src={footerImg} alt="Juwelo Logo" className="h-8 w-auto object-contain mb-3" />
+        <img src={footerImg} alt="Damiani Logo" className="h-8 w-auto object-contain mb-3" />
         <p className="text-xs text-white/70 tracking-widest uppercase font-light">
           Elegance & Timeless Luxury
         </p>
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
       {/* Copyright */}
       <p className="text-[11px] text-gray-500 tracking-wider">
-        &copy; {new Date().getFullYear()} Juwelo. All rights reserved.
+        &copy; {new Date().getFullYear()} Damiani. All rights reserved.
       </p>
     </footer>
   );

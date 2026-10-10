@@ -7,7 +7,7 @@ const Extra = () => {
       {/* Elegant Centered Glass Card */}
       <div className="relative z-10 backdrop-blur-md bg-black/45 border border-white/15 p-8 sm:p-10 max-w-md rounded-2xl shadow-2xl text-center">
         <span className="text-xs uppercase tracking-widest text-golden font-semibold mb-2 block">
-          Juwelo Heritage
+          Damiani Heritage
         </span>
         <h2 className="text-2xl sm:text-3xl font-light text-white mb-4">
           Where Beauty Meets Meaning

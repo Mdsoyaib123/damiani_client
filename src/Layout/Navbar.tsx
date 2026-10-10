@@ -235,7 +235,7 @@ const Navbar = () => {
                   <Link to="/" className="flex items-center">
                     <img
                       src={logo}
-                      alt="JUWELO"
+                      alt="Damiani"
                       className="h-8 w-36 object-contain"
                     />
                   </Link>

@@ -22,7 +22,7 @@ const Contact = () => {
           </p>
 
           <h1 className="mb-3 text-2xl font-light leading-tight tracking-tight text-white sm:text-4xl">
-            Juwelo Help Center
+            Damiani Help Center
           </h1>
 
           <p className="mb-2 max-w-xl text-sm leading-7 text-white/90 sm:text-base md:text-lg">

@@ -263,7 +263,7 @@ const OrderRecord = () => {
                   <div className="px-4 py-3.5 flex items-center justify-between gap-3 border-b border-gray-100">
                     <div className="min-w-0">
                       <p className="text-[9px] text-gray-400 uppercase tracking-[0.18em]">
-                        Juwelo · Order record
+                        Damiani · Order record
                       </p>
 
                       <p className="text-xs text-black mt-1">

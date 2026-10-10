@@ -5,12 +5,12 @@ import aboutImage from "@/assets/about/about.jpg";
 export default function AboutUs() {
   const aboutItems = [
     <>
-      Juwelo New York is an international platform company that provides gold
+      Damiani New York is an international platform company that provides gold
       and jewelry buying, selling and trading. Its main goal is to help brands
       and retailers collect, manage and nationally order transactions.
     </>,
     <>
-      Juwelo New York helps merchants conduct cross-border transactions,
+      Damiani New York helps merchants conduct cross-border transactions,
       providing a system mechanism for greater mobility and faster
       transactions.
     </>,
@@ -19,7 +19,7 @@ export default function AboutUs() {
       to display customer feedback in an eye-catching way on their website.
     </>,
     <>
-      By displaying real user reviews, Juwelo New York helps brands build trust
+      By displaying real user reviews, Damiani New York helps brands build trust
       and improve potential customers' purchasing decisions.
     </>,
     <>
@@ -27,7 +27,7 @@ export default function AboutUs() {
       into customer feedback and identify product strengths and weaknesses.
     </>,
     <>
-      Juwelo New York can be integrated with agencies and marketing tools in
+      Damiani New York can be integrated with agencies and marketing tools in
       different countries to help brands manage customer transactions in
       cross-border channels.
     </>,
@@ -91,7 +91,7 @@ export default function AboutUs() {
           <div className="mx-auto mt-5 h-px w-10 bg-white/70" />
 
           <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-white/90 sm:text-base">
-            Discover more about Juwelo New York and our platform.
+            Discover more about Damiani New York and our platform.
           </p>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function AboutUs() {
           {/* Section Heading */}
           <header className="mb-8 border-b border-neutral-200 pb-7 sm:mb-10 sm:pb-9">
             <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500">
-              About Juwelo New York
+              About Damiani New York
             </p>
 
             <h2 className="mt-3 text-2xl font-light tracking-tight text-neutral-900 sm:text-3xl">
