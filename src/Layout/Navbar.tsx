@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Menu,
   User,
   Mail,
   CreditCard,
@@ -29,7 +28,7 @@ import { IoMenuOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openAccountModal, setOpenAccountModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -64,9 +63,9 @@ const Navbar = () => {
     trialRoundBalance: user?.trialRoundBalance || 0,
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  // const toggleMobileMenu = () => {
+  //   setIsMobileMenuOpen(!isMobileMenuOpen);
+  // };
 
   // Scroll listener for background and text/icon color transition
   useEffect(() => {
