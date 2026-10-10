@@ -1,5 +1,5 @@
 import React from "react";
-import footerImg from "@/assets/juwelo-logo.png";
+import footerImg from "@/assets/white-logo.svg";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Sparkles, Headset } from "lucide-react";
 

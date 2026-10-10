@@ -1,15 +1,13 @@
 import Carousel from "@/components/Carousel/Carousel";
-import img1 from "@/assets/carousel/car-new-1.png"
-import img2 from "@/assets/carousel/car-new-2.png"
-import img3 from "@/assets/carousel/car-new-3.png"
-import img4 from "@/assets/carousel/car-new-4.png"
+import img1 from "@/assets/carousel/ep1.jpeg"
+import img2 from "@/assets/carousel/ep2.jpeg"
+import img3 from "@/assets/carousel/Gemini_Generated_Image_ncl0tjncl0tjncl0.jpeg"
 
 const Event = () => {
     const images = [
         img1,
         img2,
         img3,
-        img4,
     ];
 
     return (
