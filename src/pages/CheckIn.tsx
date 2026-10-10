@@ -1,3 +1,4 @@
+
 import moneyBag from "@/assets/money-bag.png";
 import {
   useGetSingleUserQuery,
@@ -22,6 +23,98 @@ const rewards = [
   { day: "Day 06", amount: "৳12,000", numericAmount: 12000, dayNum: 6 },
 ];
 
+const CheckInSkeleton = () => {
+  return (
+    <main className="min-h-screen bg-[#f5f5f3] pb-12 animate-pulse">
+      <div className="mx-auto max-w-5xl">
+        {/* Hero Skeleton */}
+        <section className="flex min-h-55 flex-col items-center justify-center bg-neutral-200 px-6 py-12 text-center sm:min-h-67.5">
+          <div className="h-3 w-32 bg-white/50 mb-5" />
+          <div className="h-9 w-56 max-w-full bg-white/60" />
+          <div className="mt-4 h-3 w-64 max-w-full bg-white/40" />
+          <div className="mt-2 h-3 w-48 max-w-full bg-white/40" />
+        </section>
+
+        <div className="px-5 sm:px-8">
+          {/* Progress Skeleton */}
+          <section className="border-b border-gray-200/70 py-7 sm:py-9">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <div className="h-3 w-28 bg-gray-200" />
+                <div className="mt-3 h-7 w-40 bg-gray-200" />
+                <div className="mt-3 h-3 w-36 bg-gray-200/80" />
+              </div>
+
+              <div className="h-11 w-11 shrink-0 border border-gray-200 bg-white" />
+            </div>
+
+            <div className="mt-6 h-1 w-full bg-gray-200">
+              <div className="h-full w-1/3 bg-gray-300" />
+            </div>
+
+            <div className="mt-3 flex justify-between gap-4">
+              <div className="h-3 w-44 max-w-[70%] bg-gray-200" />
+              <div className="h-3 w-8 bg-gray-200" />
+            </div>
+          </section>
+
+          {/* Eligibility Skeleton */}
+          <section className="mt-6 flex gap-3 border border-gray-200 bg-white p-4 sm:p-5">
+            <div className="h-9 w-9 shrink-0 border border-gray-200 bg-gray-100" />
+            <div className="flex-1">
+              <div className="h-4 w-36 bg-gray-200" />
+              <div className="mt-3 h-3 w-full max-w-sm bg-gray-100" />
+              <div className="mt-2 h-3 w-4/5 max-w-xs bg-gray-100" />
+              <div className="mt-4 h-1 w-full bg-gray-200" />
+              <div className="mt-3 h-3 w-24 bg-gray-200" />
+            </div>
+          </section>
+
+          {/* Reward Heading Skeleton */}
+          <section className="pt-7 sm:pt-9">
+            <div className="mb-5 flex items-end justify-between gap-3">
+              <div>
+                <div className="h-3 w-36 bg-gray-200" />
+                <div className="mt-3 h-5 w-32 bg-gray-200" />
+              </div>
+              <div className="h-3 w-16 bg-gray-200" />
+            </div>
+
+            {/* Reward Cards Skeleton */}
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+              {rewards.map((reward) => (
+                <article
+                  key={reward.dayNum}
+                  className="flex min-h-46.25 flex-col border border-gray-200/80 bg-white p-4 sm:min-h-51.25 sm:p-5"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="h-3 w-14 bg-gray-200" />
+                    <div className="h-4 w-4 bg-gray-200" />
+                  </div>
+
+                  <div className="flex flex-1 flex-col items-center justify-center py-4">
+                    <div className="h-12 w-12 border border-gray-100 bg-gray-100" />
+                    <div className="mt-4 h-6 w-20 bg-gray-200" />
+                    <div className="mt-2 h-2.5 w-16 bg-gray-100" />
+                  </div>
+
+                  <div className="h-9 w-full border border-gray-100 bg-gray-100" />
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {/* Footer Skeleton */}
+          <div className="mt-8 border-t border-gray-200/70 pt-5">
+            <div className="mx-auto h-3 w-4/5 max-w-md bg-gray-200" />
+            <div className="mx-auto mt-2 h-3 w-3/5 max-w-sm bg-gray-200/70" />
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
 export default function CheckIn() {
   const storedId = localStorage.getItem("userId");
   const userId = storedId ? Number.parseInt(storedId, 10) : 0;
@@ -39,6 +132,7 @@ export default function CheckIn() {
 
   const hasCompletedRequiredOrders = orderCount >= 41;
   const progress = Math.min((totalCheckIns / rewards.length) * 100, 100);
+
   const nextReward = rewards.find(
     (reward) => reward.dayNum === totalCheckIns + 1,
   );
@@ -83,19 +177,12 @@ export default function CheckIn() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-3 bg-white">
-        <LoaderCircle className="h-6 w-6 animate-spin text-gray-400" />
-        <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400">
-          Loading rewards
-        </p>
-      </div>
-    );
+  if (isLoading && userId) {
+    return <CheckInSkeleton />;
   }
 
   return (
-    <main className="min-h-screen bg-white pb-12">
+    <main className="min-h-screen bg-[#f5f5f3] pb-12">
       <div className="mx-auto max-w-5xl">
         {/* Hero */}
         <section className="relative flex min-h-55 items-center justify-center overflow-hidden bg-neutral-950 px-6 py-12 text-center sm:min-h-67.5">
@@ -118,8 +205,8 @@ export default function CheckIn() {
         </section>
 
         <div className="px-5 sm:px-8">
-          {/* Progress summary */}
-          <section className="border-b border-gray-100 py-7 sm:py-9">
+          {/* Progress Summary */}
+          <section className="border-b border-gray-200/70 py-7 sm:py-9">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400">
@@ -135,12 +222,12 @@ export default function CheckIn() {
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-gray-100">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-gray-200 bg-white">
                 <Gift className="h-5 w-5 text-gray-500" />
               </div>
             </div>
 
-            <div className="mt-6 h-1 w-full overflow-hidden bg-gray-100">
+            <div className="mt-6 h-1 w-full overflow-hidden bg-gray-200">
               <div
                 className="h-full bg-emerald-600 transition-all duration-500"
                 style={{ width: `${progress}%` }}
@@ -160,10 +247,10 @@ export default function CheckIn() {
             </div>
           </section>
 
-          {/* Eligibility notice */}
+          {/* Eligibility Notice */}
           {!hasCompletedRequiredOrders && (
-            <section className="mt-6 flex items-start gap-3 border border-gray-200 p-4 sm:p-5">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-gray-200">
+            <section className="mt-6 flex items-start gap-3 border border-gray-200 bg-white p-4 sm:p-5">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-gray-200 bg-[#f5f5f3]">
                 <LockKeyhole className="h-4 w-4 text-gray-500" />
               </div>
 
@@ -192,7 +279,7 @@ export default function CheckIn() {
             </section>
           )}
 
-          {/* Reward grid */}
+          {/* Reward Grid */}
           <section className="pt-7 sm:pt-9">
             <div className="mb-5 flex items-end justify-between gap-3">
               <div>
@@ -216,8 +303,7 @@ export default function CheckIn() {
                 const isUnlocked =
                   hasCompletedRequiredOrders &&
                   reward.dayNum === totalCheckIns + 1;
-                const isLocked =
-                  !isClaimed && !isUnlocked;
+                const isLocked = !isClaimed && !isUnlocked;
 
                 return (
                   <article
@@ -227,7 +313,7 @@ export default function CheckIn() {
                         ? "border-emerald-100 bg-emerald-50/30"
                         : isUnlocked
                           ? "border-black bg-white"
-                          : "border-gray-100 bg-white"
+                          : "border-gray-200/70 bg-white"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -253,7 +339,7 @@ export default function CheckIn() {
                             ? "border-emerald-100 bg-white"
                             : isUnlocked
                               ? "border-gray-200 bg-white"
-                              : "border-gray-100 bg-gray-50"
+                              : "border-gray-100 bg-[#f5f5f3]"
                         }`}
                       >
                         {isClaimed ? (
@@ -291,15 +377,13 @@ export default function CheckIn() {
                       onClick={() =>
                         handleClaim(reward.dayNum, reward.numericAmount)
                       }
-                      disabled={
-                        isClaiming || isClaimed || !isUnlocked
-                      }
+                      disabled={isClaiming || isClaimed || !isUnlocked}
                       className={`flex w-full items-center justify-center gap-2 border px-2 py-2.5 text-[9px] uppercase tracking-[0.12em] transition-colors ${
                         isClaimed
                           ? "border-emerald-100 bg-white text-emerald-700"
                           : isUnlocked
                             ? "border-black bg-black text-white hover:bg-gray-800"
-                            : "border-gray-100 bg-gray-50 text-gray-400"
+                            : "border-gray-200/70 bg-[#f5f5f3] text-gray-400"
                       }`}
                     >
                       {isClaiming && isUnlocked ? (
@@ -327,10 +411,10 @@ export default function CheckIn() {
             </div>
           </section>
 
-          {/* Next reward */}
+          {/* Next Reward */}
           {hasCompletedRequiredOrders && nextReward && (
-            <section className="mt-6 flex items-start gap-3 border-t border-gray-100 pt-5">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-gray-100">
+            <section className="mt-6 flex items-start gap-3 border-t border-gray-200/70 pt-5">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-gray-200 bg-white">
                 <Gift className="h-4 w-4 text-gray-500" />
               </div>
 
@@ -350,8 +434,8 @@ export default function CheckIn() {
             </section>
           )}
 
-          {/* Footer note */}
-          <p className="mt-8 border-t border-gray-100 pt-5 text-center text-[10px] leading-5 text-gray-400">
+          {/* Footer Note */}
+          <p className="mt-8 border-t border-gray-200/70 pt-5 text-center text-[10px] leading-5 text-gray-400">
             Rewards must be claimed in order. Complete the required orders to
             unlock your daily check-in rewards.
           </p>

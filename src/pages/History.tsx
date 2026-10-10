@@ -1,11 +1,12 @@
+
 import {
-  Loader2,
   ArrowDownLeft,
   CalendarClock,
   Wallet,
   ArrowDownToLine,
   CheckCircle2,
   RefreshCw,
+  LockKeyhole,
 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -28,6 +29,125 @@ interface HistoryItem {
   updatedAt: string;
   __v: number;
 }
+
+const HistorySkeleton = ({
+  activeTab,
+}: {
+  activeTab: HistoryType;
+}) => {
+  return (
+    <main className="min-h-screen animate-pulse bg-[#f5f5f3] pb-10">
+      <div className="mx-auto max-w-125">
+        {/* Header Skeleton */}
+        <header className="border-b border-gray-200/70 px-5 pb-6 pt-8">
+          <div className="mb-4 h-3 w-24 bg-gray-200" />
+
+          <div className="flex items-end justify-between gap-4">
+            <div className="flex-1">
+              <div className="h-8 w-56 max-w-full bg-gray-200" />
+              <div className="mt-3 h-3 w-52 max-w-full bg-gray-200/80" />
+            </div>
+
+            <div className="h-10 w-10 shrink-0 border border-gray-200 bg-white" />
+          </div>
+        </header>
+
+        {/* Main Tabs Skeleton */}
+        <div className="border-b border-gray-200/70 px-5">
+          <div className="flex gap-7">
+            <div className="relative py-4">
+              <div className="h-3 w-20 bg-gray-200" />
+              {activeTab === "withdraw" && (
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-400" />
+              )}
+            </div>
+
+            <div className="relative py-4">
+              <div className="h-3 w-24 bg-gray-200" />
+              {activeTab === "other" && (
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-400" />
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Secondary Tabs Skeleton */}
+        {activeTab === "other" && (
+          <div className="flex gap-2 px-5 pt-5">
+            <div className="h-9 w-24 border border-gray-200 bg-white" />
+            <div className="h-9 w-24 border border-gray-200 bg-white" />
+          </div>
+        )}
+
+        {/* Section Heading Skeleton */}
+        <div className="flex items-center justify-between gap-3 px-5 pb-4 pt-6">
+          <div>
+            <div className="h-3 w-32 bg-gray-200" />
+            <div className="mt-3 h-3 w-48 max-w-full bg-gray-200/80" />
+          </div>
+
+          <div className="h-4 w-4 shrink-0 bg-gray-200" />
+        </div>
+
+        {/* Transaction Rows Skeleton */}
+        <div className="px-5">
+          <div className="border-t border-gray-200/70">
+            {[1, 2, 3, 4].map((item) => (
+              <article
+                key={item}
+                className="border-b border-gray-200/70 py-5"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 flex-1 items-start gap-3">
+                    <div className="h-10 w-10 shrink-0 border border-gray-200 bg-white" />
+
+                    <div className="min-w-0 flex-1">
+                      <div className="h-4 w-28 max-w-full bg-gray-200" />
+                      <div className="mt-3 h-3 w-32 max-w-full bg-gray-200/80" />
+                      <div className="mt-3 h-2.5 w-20 bg-gray-200/70" />
+
+                      {activeTab === "withdraw" && (
+                        <>
+                          <div className="mt-4 h-2.5 w-20 bg-gray-200/70" />
+                          <div className="mt-2 h-3 w-36 max-w-full bg-gray-200" />
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex shrink-0 flex-col items-end">
+                    <div className="h-4 w-24 bg-gray-200" />
+                    <div className="mt-3 h-6 w-20 border border-gray-200 bg-white" />
+                  </div>
+                </div>
+
+                {activeTab === "withdraw" && item % 2 === 0 && (
+                  <div className="ml-13 mt-5 grid grid-cols-2 gap-4 border-t border-gray-200/70 pt-4">
+                    <div>
+                      <div className="h-2.5 w-16 bg-gray-200" />
+                      <div className="mt-2 h-3 w-24 bg-gray-200/80" />
+                    </div>
+
+                    <div>
+                      <div className="h-2.5 w-24 bg-gray-200" />
+                      <div className="mt-2 h-3 w-28 bg-gray-200/80" />
+                    </div>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer Skeleton */}
+        <div className="flex items-center justify-center gap-2 px-5 pt-5">
+          <div className="h-3.5 w-3.5 bg-gray-200" />
+          <div className="h-2.5 w-32 bg-gray-200" />
+        </div>
+      </div>
+    </main>
+  );
+};
 
 const History = () => {
   const [activeTab, setActiveTab] = useState<HistoryType>("withdraw");
@@ -156,10 +276,10 @@ const History = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white pb-10">
+    <main className="min-h-screen bg-[#f5f5f3] pb-10">
       <div className="mx-auto max-w-125">
-        {/* Page heading */}
-        <header className="border-b border-gray-100 px-5 pb-6 pt-8">
+        {/* Page Heading */}
+        <header className="border-b border-gray-200/70 px-5 pb-6 pt-8">
           <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-gray-400">
             Your account
           </p>
@@ -175,14 +295,14 @@ const History = () => {
               </p>
             </div>
 
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-gray-100">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-gray-200 bg-white">
               <Wallet className="h-4 w-4 text-gray-500" />
             </div>
           </div>
         </header>
 
-        {/* Main tabs */}
-        <div className="border-b border-gray-100 px-5">
+        {/* Main Tabs */}
+        <div className="border-b border-gray-200/70 px-5">
           <div className="flex gap-7">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.value;
@@ -209,7 +329,7 @@ const History = () => {
           </div>
         </div>
 
-        {/* Secondary tabs */}
+        {/* Secondary Tabs */}
         {activeTab === "other" && (
           <div className="px-5 pt-5">
             <div className="flex flex-wrap gap-2">
@@ -235,7 +355,7 @@ const History = () => {
           </div>
         )}
 
-        {/* Transaction section heading */}
+        {/* Transaction Section Heading */}
         <div className="flex items-center justify-between gap-3 px-5 pb-4 pt-6">
           <div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400">
@@ -254,20 +374,12 @@ const History = () => {
           <RefreshCw className="h-3.5 w-3.5 shrink-0 text-gray-300" />
         </div>
 
-        {/* Loading state */}
-        {isLoading && (
-          <div className="flex flex-col items-center justify-center py-20">
-            <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
+        {/* Skeleton Loading */}
+        {isLoading && <HistorySkeleton activeTab={activeTab} />}
 
-            <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-gray-400">
-              Loading transactions
-            </p>
-          </div>
-        )}
-
-        {/* Error state */}
+        {/* Error State */}
         {!isLoading && hasError && (
-          <div className="mx-5 border border-gray-100 px-5 py-12 text-center">
+          <div className="mx-5 border border-gray-200/70 bg-white px-5 py-12 text-center">
             <p className="text-sm font-light text-black">
               Unable to load transactions
             </p>
@@ -278,10 +390,10 @@ const History = () => {
           </div>
         )}
 
-        {/* Empty state */}
+        {/* Empty State */}
         {!isLoading && !hasError && !hasData && (
-          <div className="mx-5 border border-gray-100 px-5 py-16 text-center">
-            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center border border-gray-100">
+          <div className="mx-5 border border-gray-200/70 bg-white px-5 py-16 text-center">
+            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center border border-gray-200 bg-[#f5f5f3]">
               <Wallet className="h-5 w-5 text-gray-300" />
             </div>
 
@@ -299,21 +411,21 @@ const History = () => {
           </div>
         )}
 
-        {/* Withdrawal history */}
+        {/* Withdrawal History */}
         {!isLoading &&
           !hasError &&
           activeTab === "withdraw" &&
           (withdrawData?.data?.length ?? 0) > 0 && (
             <div className="px-5">
-              <div className="border-t border-gray-100">
+              <div className="border-t border-gray-200/70">
                 {withdrawData!.data!.map((item) => (
                   <article
                     key={item._id}
-                    className="border-b border-gray-100 py-5"
+                    className="border-b border-gray-200/70 py-5"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-start gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-red-100 text-red-500">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-red-100 bg-white text-red-500">
                           <ArrowDownLeft className="h-4 w-4" />
                         </div>
 
@@ -345,7 +457,7 @@ const History = () => {
                         </p>
 
                         <span
-                          className={`mt-2 inline-block border px-2 py-1 text-[9px] uppercase tracking-widest ${getStatusStyle(
+                          className={`mt-2 inline-block border bg-white px-2 py-1 text-[9px] uppercase tracking-widest ${getStatusStyle(
                             item.transactionStatus,
                           )}`}
                         >
@@ -354,7 +466,7 @@ const History = () => {
                       </div>
                     </div>
 
-                    {/* Additional withdrawal details */}
+                    {/* Additional Withdrawal Details */}
                     {(item.bankName ||
                       item.processingTime ||
                       item.reviewRemark) && (
@@ -402,13 +514,13 @@ const History = () => {
             </div>
           )}
 
-        {/* Check-in and recharge history */}
+        {/* Check-in and Recharge History */}
         {!isLoading &&
           !hasError &&
           activeTab === "other" &&
           (otherData?.data?.length ?? 0) > 0 && (
             <div className="px-5">
-              <div className="border-t border-gray-100">
+              <div className="border-t border-gray-200/70">
                 {otherData!.data!.map((item: HistoryItem) => {
                   const isCheckIn = item.historyType === "checkIn";
                   const title = item.notes || item.historyType;
@@ -416,12 +528,12 @@ const History = () => {
                   return (
                     <article
                       key={item._id}
-                      className="border-b border-gray-100 py-5"
+                      className="border-b border-gray-200/70 py-5"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex min-w-0 items-center gap-3">
                           <div
-                            className={`flex h-10 w-10 shrink-0 items-center justify-center border ${
+                            className={`flex h-10 w-10 shrink-0 items-center justify-center border bg-white ${
                               isCheckIn
                                 ? "border-gray-200 text-gray-600"
                                 : "border-emerald-100 text-emerald-600"
