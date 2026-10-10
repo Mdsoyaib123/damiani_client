@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Pickaxe } from "lucide-react";
-// import bgVideo from "@/assets/video/INK4883_DAMIANI_ICONS_CAMPAIGN_DUO_15s_9x16_V11_CLEAN_1920p.mp4";
 
 const Grab = () => {
   const navigate = useNavigate();
@@ -11,34 +10,21 @@ const Grab = () => {
   };
 
   return (
-    <section className="relative isolate flex h-screen min-h-150 w-full items-center justify-center overflow-hidden text-center">
-      {/* Responsive local background video */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* <video
-          src={bgVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        /> */}
-
-        {/* Previous Vimeo iframe */}
-        
+    <section className="relative isolate flex h-screen w-full items-center justify-center overflow-hidden text-center">
+      {/* Responsive background video covering full height and width */}
+      <div className="absolute inset-0 -z-20 overflow-hidden">
         <iframe
           src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
           title="Damiani background video"
           allow="autoplay; fullscreen; picture-in-picture"
           className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
           style={{
-            width: "177.77777778vh",
+            width: "177.77777778vh", /* 16:9 aspect ratio: 16/9 = 1.7777 */
             height: "100vh",
             minWidth: "100%",
-            minHeight: "56.25vw",
+            minHeight: "56.25vw", /* 9/16 aspect ratio */
           }}
         />
-       
       </div>
 
       {/* Cinematic overlay */}
@@ -64,7 +50,7 @@ const Grab = () => {
         <button
           type="button"
           onClick={handleGrabOrder}
-          className="group inline-flex min-h-13 cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-14 sm:px-9"
+          className="group inline-flex min-h-13 cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-[56px] sm:px-9"
         >
           <Pickaxe
             size={17}
