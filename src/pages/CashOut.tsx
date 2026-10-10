@@ -211,9 +211,9 @@ const CashOut = () => {
             <div className="flex min-w-0 items-center gap-3 border border-neutral-200 bg-[#FAFAF9] p-3">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-neutral-200 bg-white">
                 {isMobileBanking ? (
-                  <Smartphone className="h-[17px] w-[17px] text-neutral-700" />
+                  <Smartphone className="h-3 w-3 text-neutral-700" />
                 ) : (
-                  <Building2 className="h-[17px] w-[17px] text-neutral-700" />
+                  <Building2 className="h-3 w-3 text-neutral-700" />
                 )}
               </div>
 

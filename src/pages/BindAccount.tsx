@@ -150,7 +150,7 @@ const BindAccount = () => {
 
   return (
     <main className="min-h-screen bg-[#F5F5F3] px-3 py-5 text-neutral-900 sm:px-4">
-      <div className="mx-auto w-full max-w-[430px]">
+      <div className="mx-auto w-full max-w-107.5">
         {/* Page heading */}
         <header className="mb-5 px-1">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">

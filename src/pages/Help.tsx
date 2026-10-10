@@ -48,7 +48,7 @@ export default function Help() {
             </nav>
 
             {/* Hero */}
-            <section className="relative isolate flex min-h-[280px] items-center justify-center overflow-hidden sm:min-h-[360px]">
+            <section className="relative isolate flex min-h-70 items-center justify-center overflow-hidden sm:min-h-80">
                 <img
                     src={helpImage}
                     alt=""
