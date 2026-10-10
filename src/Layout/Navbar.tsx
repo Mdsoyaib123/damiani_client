@@ -192,7 +192,7 @@ const Navbar = () => {
             {/* Backdrop */}
             <motion.div
               key="backdrop"
-              className="fixed inset-0 bg-black/50 z-[100]"
+              className="fixed inset-0 bg-black/50 z-100"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -203,7 +203,7 @@ const Navbar = () => {
             {/* Drawer panel */}
             <motion.div
               key="drawer"
-              className="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-white z-[101] flex flex-col shadow-2xl"
+              className="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-white z-101 flex flex-col shadow-2xl"
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
@@ -304,7 +304,7 @@ const Navbar = () => {
 const MenuItem = ({ icon, text }: { icon: React.ReactNode; text: string }) => {
   return (
     <div className="w-full flex items-center gap-4 px-6 py-3.5 hover:bg-gray-50 cursor-pointer rounded-lg transition-colors text-left">
-      <div className="text-gray-700 flex-shrink-0">{icon}</div>
+      <div className="text-gray-700 shrink-0">{icon}</div>
       <span className="text-gray-900 text-base font-normal">{text}</span>
     </div>
   );
