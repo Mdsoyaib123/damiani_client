@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, Star, Pickaxe } from "lucide-react";
@@ -141,14 +140,13 @@ const Task: React.FC = () => {
       user?.adminAssaignProductsOrRewards &&
       user.adminAssaignProductsOrRewards.length > 0
     ) {
-      const productWithMysteryBox =
-        user.adminAssaignProductsOrRewards.find(
-          (product: any) =>
-            product.mysterybox &&
-            product.mysterybox.method &&
-            product.mysterybox.amount &&
-            product.mysterybox.seenTheReward === false,
-        );
+      const productWithMysteryBox = user.adminAssaignProductsOrRewards.find(
+        (product: any) =>
+          product.mysterybox &&
+          product.mysterybox.method &&
+          product.mysterybox.amount &&
+          product.mysterybox.seenTheReward === false,
+      );
 
       const mysteryBoxOrderNumber = productWithMysteryBox?.orderNumber;
 
@@ -321,10 +319,7 @@ const Task: React.FC = () => {
 
           <div className="divide-y divide-neutral-200">
             {tasks.map((task) => (
-              <article
-                key={task.id}
-                className="flex items-center gap-3 py-4"
-              >
+              <article key={task.id} className="flex items-center gap-3 py-4">
                 <span className="w-4 shrink-0 text-[10px] tabular-nums text-neutral-400">
                   {String(task.id).padStart(2, "0")}
                 </span>
@@ -357,10 +352,7 @@ const Task: React.FC = () => {
                   </div>
                 </div>
 
-                <ChevronRight
-                  size={15}
-                  className="shrink-0 text-neutral-400"
-                />
+                <ChevronRight size={15} className="shrink-0 text-neutral-400" />
               </article>
             ))}
           </div>
@@ -397,7 +389,7 @@ const Task: React.FC = () => {
                   Mining Order
                 </span>
                 <span className="mt-1 block text-[10px] text-white/60">
-                  {completedOrders} / 25 orders completed
+                  {completedOrders} / 30 orders completed
                 </span>
               </span>
             </span>
@@ -472,10 +464,7 @@ const Task: React.FC = () => {
       )}
 
       {/* Mining */}
-      <MiningOrderModal
-        open={openMiningModal}
-        setOpen={setOpenMiningModal}
-      />
+      <MiningOrderModal open={openMiningModal} setOpen={setOpenMiningModal} />
 
       {/* Errors */}
       <ErrorModal
