@@ -218,7 +218,7 @@ const Product: React.FC = () => {
 
     return (
         <main className="min-h-screen bg-[#f5f5f3]">
-            <div className="mx-auto min-h-screen max-w-125 bg-white pb-36">
+            <div className="mx-auto  max-w-125 bg-white pb-2">
                 {/* Header */}
                 <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-neutral-200 bg-[#f5f5f3]/95 px-5 py-4 backdrop-blur-sm">
                     <button
@@ -330,7 +330,7 @@ const Product: React.FC = () => {
                 )}
 
                 {/* Fixed Bottom Actions */}
-                <footer className="fixed bottom-0 left-1/2 z-20 w-full max-w-125 -translate-x-1/2 border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
+                <footer className="w-full max-w-130 border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
                     <div className="mb-3 flex items-center justify-between gap-4">
                         <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-500">
                             Earn Profit
