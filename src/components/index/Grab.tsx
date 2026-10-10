@@ -28,7 +28,7 @@ const Grab = () => {
       </div>
 
       {/* Cinematic overlay */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/85 via-black/30 to-black/10" />
 
       {/* Content */}
       <div className="relative z-20 flex h-full w-full flex-col items-center justify-end px-5 pb-12 sm:px-6 sm:pb-16 md:pb-20">
@@ -50,7 +50,7 @@ const Grab = () => {
         <button
           type="button"
           onClick={handleGrabOrder}
-          className="group inline-flex min-h-[52px] cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-[56px] sm:px-9"
+          className="group inline-flex min-h-13 cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-14 sm:px-9"
         >
           <Pickaxe
             size={17}
