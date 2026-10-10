@@ -19,10 +19,10 @@ const Grab = () => {
           allow="autoplay; fullscreen; picture-in-picture"
           className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
           style={{
-            width: "177.77777778vh", /* 16:9 aspect ratio: 16/9 = 1.7777 */
+            width: "177.77777778vh" /* 16:9 aspect ratio: 16/9 = 1.7777 */,
             height: "100vh",
             minWidth: "100%",
-            minHeight: "56.25vw", /* 9/16 aspect ratio */
+            minHeight: "56.25vw" /* 9/16 aspect ratio */,
           }}
         />
       </div>
@@ -38,9 +38,7 @@ const Grab = () => {
 
         <h1 className="mb-3 text-3xl font-light tracking-tight text-white sm:text-4xl md:text-5xl">
           Do more with{" "}
-          <span className="font-semibold uppercase text-golden">
-            Damiani
-          </span>
+          <span className="font-semibold uppercase text-golden">Damiani</span>
         </h1>
 
         <p className="mb-7 max-w-md text-sm font-light leading-6 text-white/80 sm:text-base">
@@ -50,7 +48,7 @@ const Grab = () => {
         <button
           type="button"
           onClick={handleGrabOrder}
-          className="group inline-flex min-h-13 cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-[56px] sm:px-9"
+          className="group inline-flex min-h-13 cursor-pointer items-center justify-center gap-3 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-950 shadow-xl shadow-black/20 transition-all duration-300 hover:bg-[#d7bd83] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:min-h-14 sm:px-9"
         >
           <Pickaxe
             size={17}
