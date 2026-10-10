@@ -11,7 +11,6 @@ import {
 import { useCreateWithdrawMutation } from "@/store/api/withdraw/withdrawApi";
 import { useGetSingleUserQuery } from "@/store/api/user/userApi";
 import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
@@ -69,24 +68,28 @@ const CashOut = () => {
 
   if (isLoadingUser) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <Loader2 className="h-7 w-7 animate-spin text-neutral-500" />
-      </div>
+      <main className="min-h-screen bg-[#F5F5F3] px-4">
+        <div className="mx-auto flex min-h-[60vh] w-full max-w-[430px] items-center justify-center">
+          <Loader2 className="h-6 w-6 animate-spin text-neutral-500" />
+        </div>
+      </main>
     );
   }
 
   if (userError || !user) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center px-4">
-        <div className="text-center">
-          <p className="font-medium text-neutral-900">
-            Failed to load user data
-          </p>
-          <p className="mt-2 text-sm text-neutral-500">
-            Please try again later.
-          </p>
+      <main className="min-h-screen bg-[#F5F5F3] px-4">
+        <div className="mx-auto flex min-h-[60vh] w-full max-w-[430px] items-center justify-center">
+          <div className="text-center">
+            <p className="text-sm font-medium text-neutral-900">
+              Failed to load user data
+            </p>
+            <p className="mt-1 text-sm text-neutral-500">
+              Please try again later.
+            </p>
+          </div>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -146,295 +149,230 @@ const CashOut = () => {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-50/70 px-3 py-5 sm:px-6 sm:py-8">
-      <div className="mx-auto w-full max-w-5xl">
-        {/* Page heading */}
-        <div className="mb-6 sm:mb-8">
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+    <main className="min-h-screen bg-[#F5F5F3] px-3 py-4 text-neutral-900 sm:px-4">
+      <div className="mx-auto w-full max-w-[430px]">
+        {/* Header */}
+        <header className="mb-5 px-1">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
             Wallet
           </p>
 
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
-            Sell Out
-          </h1>
+          <div className="mt-1 flex items-center justify-between">
+            <h1 className="text-[25px] font-semibold tracking-tight text-neutral-950">
+              Sell Out
+            </h1>
 
-          <p className="mt-2 text-sm leading-6 text-neutral-500">
-            Withdraw your available funds to your registered account.
+            <div className="flex h-9 w-9 items-center justify-center border border-neutral-300 bg-white">
+              <Wallet className="h-[17px] w-[17px] text-neutral-800" />
+            </div>
+          </div>
+
+          <p className="mt-1 text-[13px] leading-5 text-neutral-600">
+            Withdraw funds to your registered account.
           </p>
-        </div>
+        </header>
 
-        {/* Main layout */}
-        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[1.35fr_0.85fr] lg:gap-6">
-          {/* Left column */}
-          <div className="min-w-0 space-y-5">
-            {/* Wallet balance */}
-            <Card className="overflow-hidden rounded-xl border-0 bg-neutral-900 text-white shadow-sm">
-              <CardContent className="flex items-center justify-between gap-4 p-5 sm:p-7">
-                <div className="min-w-0">
-                  <p className="text-xs font-medium text-neutral-400">
-                    Available wallet balance
-                  </p>
+        {/* Balance */}
+        <section className="border border-neutral-900 bg-neutral-900 px-4 py-4 text-white">
+          <p className="text-xs text-neutral-400">Available balance</p>
 
-                  <p className="mt-3 wrap-break-word text-3xl font-semibold tracking-tight sm:text-4xl">
-                    ৳ {user.userBalance.toLocaleString()}
-                  </p>
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-2">
+            <span className="text-xl font-medium text-neutral-300">৳</span>
+            <span className="break-all text-[32px] font-semibold leading-tight tracking-tight">
+              {user.userBalance.toLocaleString()}
+            </span>
+          </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs text-neutral-300">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-                    Available for withdrawal
-                  </div>
-                </div>
+          <div className="mt-3 flex items-center gap-2 border-t border-white/15 pt-3">
+            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+            <span className="text-xs text-neutral-300">
+              Available for withdrawal
+            </span>
+          </div>
+        </section>
 
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 sm:h-14 sm:w-14">
-                  <Wallet className="h-6 w-6 text-neutral-200" />
-                </div>
-              </CardContent>
-            </Card>
+        {/* Main form surface */}
+        <div className="mt-3 border border-neutral-200 bg-white px-4 py-4">
+          {/* Withdrawal account */}
+          <section>
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <h2 className="text-sm font-semibold text-neutral-900">
+                Withdrawal account
+              </h2>
 
-            {/* Withdrawal form */}
-            <Card className="rounded-xl border-neutral-200 bg-white shadow-sm">
-              <CardContent className="p-4 sm:p-6">
-                <div className="mb-6 border-b border-neutral-100 pb-4">
-                  <h2 className="text-base font-semibold text-neutral-900">
-                    Withdrawal details
-                  </h2>
-                  <p className="mt-1 text-sm text-neutral-500">
-                    Enter the amount you want to withdraw.
-                  </p>
-                </div>
+              {hasWithdrawalAddress && (
+                <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-emerald-700">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  Connected
+                </span>
+              )}
+            </div>
 
-                {/* Account details */}
-                <div className="mb-6">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <Label className="text-sm font-medium text-neutral-700">
-                      Collection address
-                    </Label>
+            <div className="flex min-w-0 items-center gap-3 border border-neutral-200 bg-[#FAFAF9] p-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-neutral-200 bg-white">
+                {isMobileBanking ? (
+                  <Smartphone className="h-[17px] w-[17px] text-neutral-700" />
+                ) : (
+                  <Building2 className="h-[17px] w-[17px] text-neutral-700" />
+                )}
+              </div>
 
-                    {hasWithdrawalAddress && (
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
-                        <CheckCircle2 className="h-3.5 w-3.5" />
-                        Connected
-                      </span>
-                    )}
-                  </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-neutral-900">
+                  {hasWithdrawalAddress ? displayName : "Not Set"}
+                </p>
 
-                  <div className="flex min-w-0 items-center gap-3 rounded-lg border border-neutral-200 p-3 sm:p-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-neutral-100">
-                      {isMobileBanking ? (
-                        <Smartphone className="h-5 w-5 text-neutral-700" />
-                      ) : (
-                        <Building2 className="h-5 w-5 text-neutral-700" />
-                      )}
-                    </div>
+                <p className="mt-1 break-all text-xs text-neutral-500">
+                  {hasWithdrawalAddress
+                    ? maskAddress(displayAccountNumber)
+                    : "Please bind your withdrawal account"}
+                </p>
+              </div>
 
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-neutral-900">
-                        {hasWithdrawalAddress ? displayName : "Not Set"}
-                      </p>
+              {hasWithdrawalAddress && (
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+              )}
+            </div>
+          </section>
 
-                      <p className="mt-1 break-all text-xs text-neutral-500">
-                        {hasWithdrawalAddress
-                          ? maskAddress(displayAccountNumber)
-                          : "Please bind your withdrawal account"}
-                      </p>
-                    </div>
+          {/* Amount */}
+          <section className="mt-5">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <Label
+                htmlFor="amount"
+                className="text-sm font-semibold text-neutral-900"
+              >
+                Withdrawal amount
+              </Label>
 
-                    {hasWithdrawalAddress && (
-                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-                    )}
-                  </div>
-                </div>
+              <span className="text-[11px] text-neutral-500">Min. ৳500</span>
+            </div>
 
-                {/* Amount */}
-                <div>
-                  <Label
-                    htmlFor="amount"
-                    className="mb-3 block text-sm font-medium text-neutral-700"
-                  >
-                    Sell Out Amount
-                  </Label>
+            <div className="flex h-[50px] items-center border border-neutral-300 bg-white transition-colors focus-within:border-neutral-900">
+              <span className="pl-3 text-lg font-medium text-neutral-600">
+                ৳
+              </span>
 
-                  <div className="flex h-12 items-center rounded-lg border border-neutral-200 transition-colors focus-within:border-neutral-500">
-                    <span className="pl-4 text-base font-medium text-neutral-500">
-                      ৳
-                    </span>
+              <Input
+                id="amount"
+                type="number"
+                min="500"
+                max={user.userBalance}
+                placeholder="Enter amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                disabled={!hasWithdrawalAddress || isCreatingWithdraw}
+                className="h-full min-w-0 rounded-none border-0 bg-transparent px-2 text-base font-medium shadow-none placeholder:text-neutral-400 focus-visible:ring-0"
+              />
 
-                    <Input
-                      id="amount"
-                      type="number"
-                      min="500"
-                      max={user.userBalance}
-                      placeholder="Enter amount"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      disabled={!hasWithdrawalAddress || isCreatingWithdraw}
-                      className="h-full min-w-0 rounded-none border-0 bg-transparent px-3 shadow-none focus-visible:ring-0"
-                    />
+              <button
+                type="button"
+                onClick={() => setAmount(String(user.userBalance))}
+                disabled={
+                  !hasWithdrawalAddress ||
+                  user.userBalance < 500 ||
+                  isCreatingWithdraw
+                }
+                className="mr-2 shrink-0 border border-neutral-300 px-3 py-1.5 text-xs font-semibold text-neutral-800 transition-colors hover:border-neutral-900 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Max
+              </button>
+            </div>
 
-                    <button
-                      type="button"
-                      onClick={() => setAmount(String(user.userBalance))}
-                      disabled={
-                        !hasWithdrawalAddress ||
-                        user.userBalance < 500 ||
-                        isCreatingWithdraw
-                      }
-                      className="mr-2 shrink-0 rounded-md bg-neutral-100 px-3 py-2 text-xs font-medium text-neutral-700 transition hover:bg-neutral-200 disabled:opacity-40"
-                    >
-                      Max
-                    </button>
-                  </div>
-
-                  <div className="mt-2 flex flex-wrap justify-between gap-2 text-xs">
-                    <span className="text-neutral-400">
-                      Minimum withdrawal: ৳500
-                    </span>
-
-                    {amount.trim() !== "" && (
-                      <span
-                        className={
-                          !Number.isFinite(withdrawAmount) ||
-                          withdrawAmount < 500 ||
-                          withdrawAmount > user.userBalance
-                            ? "text-red-600"
-                            : "text-emerald-700"
-                        }
-                      >
-                        {withdrawAmount > user.userBalance
-                          ? "Insufficient balance"
-                          : withdrawAmount < 500
-                            ? "Minimum is ৳500"
-                            : "Amount available"}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Amount summary */}
-                <div className="mt-5 flex items-center justify-between gap-3 rounded-lg bg-neutral-50 px-4 py-3.5">
-                  <span className="text-sm text-neutral-500">
-                    Requested amount
-                  </span>
-
-                  <span className="text-lg font-semibold text-neutral-900">
-                    ৳
-                    {amount.trim() && Number.isFinite(withdrawAmount)
-                      ? Math.max(0, withdrawAmount).toLocaleString()
-                      : "0"}
-                  </span>
-                </div>
-
-                <Button
-                  onClick={handleSellOutClick}
-                  disabled={
-                    !hasWithdrawalAddress ||
-                    isCreatingWithdraw ||
-                    !amount.trim() ||
+            <div className="mt-2 min-h-4">
+              {amount.trim() !== "" ? (
+                <p
+                  className={`text-xs ${
                     !Number.isFinite(withdrawAmount) ||
                     withdrawAmount < 500 ||
                     withdrawAmount > user.userBalance
-                  }
-                  className="mt-5 h-12 w-full rounded-lg bg-black text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed"
+                      ? "text-red-600"
+                      : "text-emerald-700"
+                  }`}
                 >
-                  {isCreatingWithdraw ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
-                    </>
-                  ) : (
-                    "Sell Out"
-                  )}
-                </Button>
-
-                <p className="mt-3 text-center text-xs leading-5 text-neutral-400">
-                  Confirm your withdrawal using your withdrawal password.
+                  {withdrawAmount > user.userBalance
+                    ? "Insufficient balance"
+                    : withdrawAmount < 500
+                      ? "Minimum withdrawal is ৳500"
+                      : "Amount available"}
                 </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Right column */}
-          <aside className="min-w-0 space-y-5">
-            {/* Rules */}
-            <Card className="rounded-xl border-neutral-200 bg-white shadow-sm">
-              <CardContent className="p-5 sm:p-6">
-                <h2 className="text-base font-semibold text-neutral-900">
-                  Withdrawal guidelines
-                </h2>
-
-                <p className="mt-1 text-sm leading-5 text-neutral-500">
-                  Please review these details before proceeding.
+              ) : (
+                <p className="text-xs text-neutral-500">
+                  Enter the amount you want to withdraw.
                 </p>
-
-                <div className="mt-5 space-y-5">
-                  <div className="flex gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-100">
-                      <Wallet className="h-4 w-4 text-neutral-700" />
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-medium text-neutral-900">
-                        Minimum amount
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-neutral-500">
-                        Each withdrawal request must be at least ৳500 and
-                        cannot exceed your available balance.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-100">
-                      <Building2 className="h-4 w-4 text-neutral-700" />
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-medium text-neutral-900">
-                        Check account details
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-neutral-500">
-                        Make sure your bank or mobile banking account number is
-                        correct to avoid transfer issues.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-100">
-                      <ShieldCheck className="h-4 w-4 text-neutral-700" />
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-medium text-neutral-900">
-                        Protect your password
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-neutral-500">
-                        Never share your withdrawal password with anyone.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Security note */}
-            <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4 sm:p-5">
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700" />
-
-                <div>
-                  <p className="text-sm font-semibold text-emerald-900">
-                    Transaction safety
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-emerald-800">
-                    Double-check your destination account before submitting.
-                    Incorrect details may prevent a successful transfer.
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
-          </aside>
+          </section>
+
+          {/* Summary */}
+          <section className="mt-4 border-t border-neutral-200 pt-3">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-sm text-neutral-600">
+                Requested amount
+              </span>
+
+              <span className="text-lg font-semibold tracking-tight text-neutral-950">
+                ৳
+                {amount.trim() && Number.isFinite(withdrawAmount)
+                  ? Math.max(0, withdrawAmount).toLocaleString()
+                  : "0"}
+              </span>
+            </div>
+
+            <div className="mt-1.5 flex items-center justify-between gap-3">
+              <span className="text-xs text-neutral-500">
+                Maximum available
+              </span>
+
+              <span className="text-xs font-medium text-neutral-700">
+                ৳{user.userBalance.toLocaleString()}
+              </span>
+            </div>
+          </section>
+
+          {/* Submit button */}
+          <Button
+            onClick={handleSellOutClick}
+            disabled={
+              !hasWithdrawalAddress ||
+              isCreatingWithdraw ||
+              !amount.trim() ||
+              !Number.isFinite(withdrawAmount) ||
+              withdrawAmount < 500 ||
+              withdrawAmount > user.userBalance
+            }
+            className="mt-4 h-12 w-full rounded-sm bg-neutral-900 text-sm font-medium text-white shadow-none hover:bg-neutral-800 disabled:cursor-not-allowed"
+          >
+            {isCreatingWithdraw ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              "Sell Out"
+            )}
+          </Button>
+
+          <p className="mt-2 text-center text-[11px] leading-5 text-neutral-500">
+            Your withdrawal password is required to confirm this transaction.
+          </p>
         </div>
+
+        {/* Security note */}
+        <section className="mt-3 flex items-start gap-3 border border-neutral-200 bg-[#EEEFEA] px-3 py-3">
+          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-neutral-600" />
+
+          <div>
+            <h2 className="text-xs font-semibold text-neutral-900">
+              Transaction safety
+            </h2>
+
+            <p className="mt-1 text-xs leading-5 text-neutral-600">
+              Check that your registered account details are correct before
+              submitting. Never share your withdrawal password with anyone.
+            </p>
+          </div>
+        </section>
       </div>
 
       <ConfirmWithdrawPasswordModal
