@@ -40,7 +40,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="mining-order-title"
-        className="mining-scene relative flex min-h-[390px] w-full max-w-[380px] flex-col items-center justify-center overflow-hidden border border-neutral-200 bg-white px-6 py-10 text-center shadow-2xl"
+        className="mining-scene relative flex min-h-97.5 w-full max-w-95 flex-col items-center justify-center overflow-hidden border border-neutral-200 bg-white px-6 py-10 text-center shadow-2xl"
       >
         {/* Subtle gray ambient light */}
         <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-300/40 blur-[65px]" />
@@ -68,14 +68,14 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
           <div className="absolute inset-6 rounded-full border border-neutral-200" />
 
           {/* Floating stone fragments */}
-          <div className="mining-stone absolute bottom-7 left-8 h-7 w-7 rotate-12 bg-gradient-to-br from-neutral-500 to-neutral-900 shadow-lg">
+          <div className="mining-stone absolute bottom-7 left-8 h-7 w-7 rotate-12 bg-linear-to-br from-neutral-500 to-neutral-900 shadow-lg">
             <div className="absolute left-1 top-1 h-2 w-2 bg-white/30" />
           </div>
 
-          <div className="mining-stone-two absolute right-7 top-8 h-5 w-5 -rotate-12 bg-gradient-to-br from-neutral-400 to-neutral-800" />
+          <div className="mining-stone-two absolute right-7 top-8 h-5 w-5 -rotate-12 bg-linear-to-br from-neutral-400 to-neutral-800" />
 
           {/* Main rock */}
-          <div className="mining-main-rock absolute flex h-[94px] w-[94px] items-center justify-center">
+          <div className="mining-main-rock absolute flex h-23.5 w-23.5 items-center justify-center">
             <svg
               viewBox="0 0 100 100"
               className="absolute inset-0 h-full w-full"
@@ -111,7 +111,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
             {/* Swinging black pickaxe */}
             <div className="mining-pickaxe absolute -right-5 -top-4 z-10">
               <Pickaxe
-                className="h-[76px] w-[76px] text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]"
+                className="h-19 w-19 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]"
                 strokeWidth={2}
               />
             </div>
@@ -143,7 +143,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
         </div>
 
         {/* Black progress bar */}
-        <div className="relative mt-8 h-[2px] w-40 overflow-hidden bg-neutral-200">
+        <div className="relative mt-8 h-0.5 w-40 overflow-hidden bg-neutral-200">
           <div className="mining-line h-full bg-black" />
         </div>
 
