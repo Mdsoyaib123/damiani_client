@@ -259,13 +259,13 @@ const Task: React.FC = () => {
             </h1>
           </button>
 
-          <button
+          {/* <button
             type="button"
             onClick={() => setOpenAccountModal(true)}
             className="border border-neutral-300 px-3.5 py-2.5 text-[10px] font-medium uppercase tracking-[0.15em] transition-colors hover:border-neutral-900"
           >
             Account
-          </button>
+          </button> */}
         </header>
 
         {/* Progress */}
@@ -368,10 +368,26 @@ const Task: React.FC = () => {
 
         {/* Main action — original position after the collection */}
         <section className="mt-2 border-t border-neutral-200 pt-5">
+          <div className=" grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => setOpenAccountModal(true)}
+              className="border border-neutral-300 py-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+            >
+              Account
+            </button>
+
+            <Link
+              to="/order-record"
+              className="border border-neutral-300 py-3 text-center text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+            >
+              Records
+            </Link>
+          </div>
           <button
             type="button"
             onClick={handleStartClick}
-            className="flex w-full items-center justify-between bg-black px-4 py-4 text-white transition-colors hover:bg-neutral-800"
+            className="flex w-full items-center mt-3 justify-between bg-black px-4 py-4 text-white transition-colors hover:bg-neutral-800"
           >
             <span className="flex items-center gap-3">
               <Pickaxe className="h-5 w-5" strokeWidth={1.6} />
@@ -390,22 +406,6 @@ const Task: React.FC = () => {
           </button>
 
           {/* Secondary actions */}
-          <div className="mt-3 grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={() => setOpenAccountModal(true)}
-              className="border border-neutral-300 py-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
-            >
-              Account
-            </button>
-
-            <Link
-              to="/order-record"
-              className="border border-neutral-300 py-3 text-center text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
-            >
-              Records
-            </Link>
-          </div>
         </section>
       </div>
 
