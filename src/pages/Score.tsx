@@ -112,7 +112,7 @@ const Score = () => {
               Technical details
             </summary>
 
-            <pre className="mt-3 overflow-auto whitespace-pre-wrap break-words text-xs text-red-700">
+            <pre className="mt-3 overflow-auto whitespace-pre-wrap wrap-break-word text-xs text-red-700">
               {JSON.stringify(error, null, 2)}
             </pre>
           </details>
@@ -179,7 +179,7 @@ const Score = () => {
               </div>
 
               <div
-                className="h-[3px] overflow-hidden bg-[#eeede8]"
+                className="h-0.75 overflow-hidden bg-[#eeede8]"
                 role="progressbar"
                 aria-label="Credit score progress"
                 aria-valuenow={score}
@@ -201,7 +201,7 @@ const Score = () => {
 
           {/* Colorful semicircular gauge */}
           <div className="flex min-w-0 flex-col items-center justify-center bg-[#fdfcf9] px-4 py-7 sm:px-8 sm:py-9">
-            <div className="mb-1 flex w-full max-w-[400px] items-center justify-between gap-3">
+            <div className="mb-1 flex w-full max-w-100 items-center justify-between gap-3">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#77796f]">
                 Credit rating
               </p>
@@ -213,7 +213,7 @@ const Score = () => {
 
             <svg
               viewBox="0 0 300 190"
-              className="block h-auto w-full max-w-[400px]"
+              className="block h-auto w-full max-w-100"
               role="img"
               aria-label={`Credit score ${score} out of 100`}
             >

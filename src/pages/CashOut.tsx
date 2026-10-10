@@ -175,7 +175,7 @@ const CashOut = () => {
                     Available wallet balance
                   </p>
 
-                  <p className="mt-3 break-words text-3xl font-semibold tracking-tight sm:text-4xl">
+                  <p className="mt-3 wrap-break-word text-3xl font-semibold tracking-tight sm:text-4xl">
                     ৳ {user.userBalance.toLocaleString()}
                   </p>
 
