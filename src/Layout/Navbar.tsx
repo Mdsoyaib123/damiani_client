@@ -94,7 +94,7 @@ const Navbar = () => {
       <nav
         className={`navbar-slide-in z-50 w-full bg-[#121410] text-white shadow-md transition-all duration-300 ${
           isHomePage
-            ? "fixed left-1/2 top-0 w-full max-w-[500px] -translate-x-1/2"
+            ? "fixed left-1/2 top-0 w-full max-w-125 -translate-x-1/2"
             : "sticky top-0"
         }`}
       >
@@ -153,7 +153,7 @@ const Navbar = () => {
             {/* Backdrop */}
             <motion.div
               key="backdrop"
-              className="fixed inset-0 z-[100] bg-black/55"
+              className="fixed inset-0 z-100 bg-black/55"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -164,7 +164,7 @@ const Navbar = () => {
             {/* Drawer */}
             <motion.div
               key="drawer"
-              className="fixed left-0 top-0 z-[101] flex h-full w-[80%] max-w-[320px] flex-col bg-white shadow-2xl"
+              className="fixed left-0 top-0 z-101 flex h-full w-[80%] max-w-[320px] flex-col bg-white shadow-2xl"
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
