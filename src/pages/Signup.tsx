@@ -129,12 +129,10 @@ const Signup = () => {
               </label>
 
               <div className="flex h-11 min-w-0 items-stretch border border-[#dcdad1] bg-white transition-colors focus-within:border-[#55735d]">
-                <div className="flex w-[145px] shrink-0 items-center overflow-visible border-r border-[#e6e4dc]">
-                  <CountryCodeSelect
+               <CountryCodeSelect
                     value={countryCode}
                     onChange={setCountryCode}
                   />
-                </div>
 
                 <input
                   id="phone"

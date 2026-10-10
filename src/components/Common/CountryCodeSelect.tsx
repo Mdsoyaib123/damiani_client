@@ -64,7 +64,7 @@ const CountryCodeSelect = ({ value, onChange }: Props) => (
     <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="bg-gray-100 w-[120px] px-2 py-2 border-r border-gray-400 focus:outline-none"
+        className="bg-gray-100 w-[135px] px-2 py-2 border-r border-gray-400 focus:outline-none"
     >
         {COUNTRY_CODES.map(({ name, code }) => (
             <option key={`${name}-${code}`} value={code}>
