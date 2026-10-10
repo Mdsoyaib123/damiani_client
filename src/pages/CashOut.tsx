@@ -69,7 +69,7 @@ const CashOut = () => {
   if (isLoadingUser) {
     return (
       <main className="min-h-screen bg-[#F5F5F3] px-4">
-        <div className="mx-auto flex min-h-[60vh] w-full max-w-[430px] items-center justify-center">
+        <div className="mx-auto flex min-h-[60vh] w-full max-w-107.5 items-center justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-neutral-500" />
         </div>
       </main>
@@ -79,7 +79,7 @@ const CashOut = () => {
   if (userError || !user) {
     return (
       <main className="min-h-screen bg-[#F5F5F3] px-4">
-        <div className="mx-auto flex min-h-[60vh] w-full max-w-[430px] items-center justify-center">
+        <div className="mx-auto flex min-h-[60vh] w-full max-w-107.5 items-center justify-center">
           <div className="text-center">
             <p className="text-sm font-medium text-neutral-900">
               Failed to load user data
@@ -150,7 +150,7 @@ const CashOut = () => {
 
   return (
     <main className="min-h-screen bg-[#F5F5F3] px-3 py-4 text-neutral-900 sm:px-4">
-      <div className="mx-auto w-full max-w-[430px]">
+      <div className="mx-auto w-full max-w-107.5">
         {/* Header */}
         <header className="mb-5 px-1">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
@@ -163,7 +163,7 @@ const CashOut = () => {
             </h1>
 
             <div className="flex h-9 w-9 items-center justify-center border border-neutral-300 bg-white">
-              <Wallet className="h-[17px] w-[17px] text-neutral-800" />
+              <Wallet className="h-4.25 w-4.25 text-neutral-800" />
             </div>
           </div>
 
@@ -248,7 +248,7 @@ const CashOut = () => {
               <span className="text-[11px] text-neutral-500">Min. ৳500</span>
             </div>
 
-            <div className="flex h-[50px] items-center border border-neutral-300 bg-white transition-colors focus-within:border-neutral-900">
+            <div className="flex h-12.5 items-center border border-neutral-300 bg-white transition-colors focus-within:border-neutral-900">
               <span className="pl-3 text-lg font-medium text-neutral-600">
                 ৳
               </span>
