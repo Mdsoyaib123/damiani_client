@@ -33,7 +33,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black/5 px-5 backdrop-blur-md"
+      className="fixed inset-0 bg-black/60  flex items-center justify-center z-50"
       role="presentation"
     >
       <div
