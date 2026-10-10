@@ -44,7 +44,7 @@ export default function ChangePassword() {
 
   return (
     <main className="min-h-screen bg-[#f5f5f3] px-4 py-8 sm:px-8 sm:py-12">
-      <section className="mx-auto w-full max-w-[560px]">
+      <section className="mx-auto w-full max-w-140">
         {/* Page Heading */}
         <header className="mb-8">
           <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-neutral-500">
