@@ -102,7 +102,6 @@ const routes = createBrowserRouter([
         path: "/withdraw-password",
         element: <WithdrawPassword />,
       },
-
     ],
   },
   {

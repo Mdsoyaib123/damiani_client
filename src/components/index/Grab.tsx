@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import bgImage from "@/assets/home-page/1_DAMIANI_Couple-band_1536x2400-mobile-new.webp";
+// import bgImage from "@/assets/home-page/1_DAMIANI_Couple-band_1536x2400-mobile-new.webp";
 
 const Grab = () => {
   const navigate = useNavigate();
@@ -10,19 +10,15 @@ const Grab = () => {
   };
 
   return (
-    <div
-      className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-cover bg-center text-center"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
+    <div className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-cover bg-center text-center">
       {/* Video background — kept for testing */}
-      {/*
+
       <iframe
         src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
         title="Juwelo background video"
         allow="autoplay; fullscreen; picture-in-picture"
         className="pointer-events-none absolute left-1/2 top-1/2 h-screen w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
       />
-      */}
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
