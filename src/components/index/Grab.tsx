@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Pickaxe } from "lucide-react";
-import bgVideo from "@/assets/video/INK4883_DAMIANI_ICONS_CAMPAIGN_DUO_15s_9x16_V11_CLEAN_1920p.mp4";
+// import bgVideo from "@/assets/video/INK4883_DAMIANI_ICONS_CAMPAIGN_DUO_15s_9x16_V11_CLEAN_1920p.mp4";
 
 const Grab = () => {
   const navigate = useNavigate();
@@ -11,10 +11,10 @@ const Grab = () => {
   };
 
   return (
-    <section className="relative isolate flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden bg-black text-center">
+    <section className="relative isolate flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden text-center">
       {/* Responsive local background video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
+        {/* <video
           src={bgVideo}
           autoPlay
           loop
@@ -22,10 +22,10 @@ const Grab = () => {
           playsInline
           preload="auto"
           className="absolute inset-0 h-full w-full object-cover object-center"
-        />
+        /> */}
 
         {/* Previous Vimeo iframe */}
-        {/*
+        
         <iframe
           src="https://player.vimeo.com/video/1213949272?autoplay=1&loop=1&muted=1&background=1&title=0&byline=0&portrait=0"
           title="Damiani background video"
@@ -38,7 +38,7 @@ const Grab = () => {
             minHeight: "56.25vw",
           }}
         />
-        */}
+       
       </div>
 
       {/* Cinematic overlay */}
