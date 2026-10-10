@@ -11,7 +11,7 @@ const Grab = () => {
   };
 
   return (
-    <section className="relative isolate flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden text-center">
+    <section className="relative isolate flex h-screen min-h-150 w-full items-center justify-center overflow-hidden text-center">
       {/* Responsive local background video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* <video
@@ -42,7 +42,7 @@ const Grab = () => {
       </div>
 
       {/* Cinematic overlay */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/85 via-black/30 to-black/10" />
 
       {/* Content */}
       <div className="relative z-20 flex h-full w-full flex-col items-center justify-end px-5 pb-12 sm:px-6 sm:pb-16 md:pb-20">
