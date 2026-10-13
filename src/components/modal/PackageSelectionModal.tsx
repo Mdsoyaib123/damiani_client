@@ -10,7 +10,7 @@ interface PackageSelectionModalProps {
 }
 
 // All possible package slots
-const ALL_SLOTS = [10000, 30000, 50000, 100000, 200000, 300000, 500000, 1000000];
+const ALL_SLOTS = [9000, 30000, 50000, 100000, 200000, 300000, 500000, 1000000];
 
 const PackageSelectionModal: React.FC<PackageSelectionModalProps> = ({
     open,
