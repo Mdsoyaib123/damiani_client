@@ -364,7 +364,7 @@ const Task: React.FC = () => {
             <button
               type="button"
               onClick={() => setOpenAccountModal(true)}
-              className="group flex items-center justify-between bg-[#e2852e] px-4 py-4 text-left text-white transition-colors duration-200 hover:bg-[#c87323]"
+              className="group flex items-center justify-between bg-golden px-4 py-4 text-left text-white transition-colors duration-200 hover:bg-[#c87323] cursor-pointer"
             >
               <span className="text-[10px] font-medium uppercase tracking-[0.16em]">
                 Account
@@ -386,7 +386,7 @@ const Task: React.FC = () => {
           <button
             type="button"
             onClick={handleStartClick}
-            className="mt-3 flex w-full items-center justify-between bg-black px-4 py-4 text-white transition-colors duration-200 hover:bg-neutral-800"
+            className="mt-3 flex w-full items-center justify-between bg-black px-4 py-4 text-white transition-colors duration-200 hover:bg-neutral-800 cursor-pointer"
           >
             <span className="flex items-center gap-3">
               <Pickaxe className="h-5 w-5" strokeWidth={1.6} />
