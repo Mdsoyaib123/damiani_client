@@ -56,7 +56,7 @@ const Grab = () => {
             className="transition-transform duration-300 group-hover:-rotate-12"
           />
 
-          <span>Mining Order</span>
+          <span>GRAB ORDER</span>
 
           <ArrowRight
             size={16}
