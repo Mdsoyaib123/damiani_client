@@ -253,7 +253,7 @@ const Task: React.FC = () => {
               Damiani
             </p>
             <h1 className="mt-1 text-2xl font-light tracking-tight text-neutral-900">
-              Mining <span className="font-semibold">Order</span>
+              Grab <span className="font-semibold">Order</span>
             </h1>
           </button>
 
