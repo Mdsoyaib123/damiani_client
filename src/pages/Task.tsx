@@ -374,7 +374,7 @@ const Task: React.FC = () => {
 
             <Link
               to="/order-record"
-              className="group flex items-center justify-between bg-[#e2852e] px-4 py-4 text-white transition-colors duration-200 hover:bg-[#c87323]"
+              className="group flex items-center justify-between bg-golden px-4 py-4 text-white transition-colors duration-200 hover:bg-[#c87323]"
             >
               <span className="text-[10px] font-medium uppercase tracking-[0.16em]">
                 Records
