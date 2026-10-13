@@ -360,30 +360,36 @@ const Task: React.FC = () => {
 
         {/* Main action — original position after the collection */}
         <section className="mt-2 border-t border-neutral-200 pt-5">
-          <div className=" grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => setOpenAccountModal(true)}
-              className="border border-neutral-300 py-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+              className="group flex items-center justify-between bg-[#e2852e] px-4 py-4 text-left text-white transition-colors duration-200 hover:bg-[#c87323]"
             >
-              Account
+              <span className="text-[10px] font-medium uppercase tracking-[0.16em]">
+                Account
+              </span>
+              <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </button>
 
             <Link
               to="/order-record"
-              className="border border-neutral-300 py-3 text-center text-[10px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-black"
+              className="group flex items-center justify-between bg-[#e2852e] px-4 py-4 text-white transition-colors duration-200 hover:bg-[#c87323]"
             >
-              Records
+              <span className="text-[10px] font-medium uppercase tracking-[0.16em]">
+                Records
+              </span>
+              <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
+
           <button
             type="button"
             onClick={handleStartClick}
-            className="flex w-full items-center mt-3 justify-between bg-black px-4 py-4 text-white transition-colors hover:bg-neutral-800"
+            className="mt-3 flex w-full items-center justify-between bg-black px-4 py-4 text-white transition-colors duration-200 hover:bg-neutral-800"
           >
             <span className="flex items-center gap-3">
               <Pickaxe className="h-5 w-5" strokeWidth={1.6} />
-
               <span className="text-left">
                 <span className="block text-[11px] font-medium uppercase tracking-[0.18em]">
                   Grab Order
@@ -393,10 +399,8 @@ const Task: React.FC = () => {
                 </span>
               </span>
             </span>
-
             <ChevronRight className="h-4 w-4 text-white/70" />
           </button>
-
           {/* Secondary actions */}
         </section>
       </div>
