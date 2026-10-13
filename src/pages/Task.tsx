@@ -125,14 +125,14 @@ const Task: React.FC = () => {
   const accountDetailsData = {
     name: user?.name || "sajjadhosenmahim",
     userId: user?.userId || 7872843,
-    quantityOfOrders: user?.quantityOfOrders || 25,
+    quantityOfOrders: user?.quantityOfOrders || 30,
     userBalance: user?.userBalance || 0,
     memberTotalRecharge: user?.memberTotalRecharge || 0,
     userType: user?.userType || "Normal",
     dailyProfit: user?.dailyProfit || 0,
     outOfBalance: user?.outOfBalance || 0,
     completedOrdersCount: user?.completedOrdersCount || 0,
-    trialRoundBalance: user?.trialRoundBalance || 0,
+    trialRoundBalance: user?.trialRoundBalance || 9000,
   };
 
   const handleStartClick = () => {
@@ -386,7 +386,7 @@ const Task: React.FC = () => {
 
               <span className="text-left">
                 <span className="block text-[11px] font-medium uppercase tracking-[0.18em]">
-                  Mining Order
+                  Grab Order
                 </span>
                 <span className="mt-1 block text-[10px] text-white/60">
                   {completedOrders} / 30 orders completed

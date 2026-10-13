@@ -95,11 +95,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
                 strokeWidth="1.5"
               />
 
-              <path
-                d="m27 10 42 5-27 28Z"
-                fill="#525252"
-                opacity=".8"
-              />
+              <path d="m27 10 42 5-27 28Z" fill="#525252" opacity=".8" />
 
               <path
                 d="m42 43 12-7 8 10-10 11-10-5Z"
@@ -134,7 +130,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
             id="mining-order-title"
             className="text-2xl font-semibold tracking-tight text-black"
           >
-            Mining Order
+            Grab Order
           </h2>
 
           <p className="mt-2 text-xs tracking-wide text-neutral-500">

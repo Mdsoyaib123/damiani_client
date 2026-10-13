@@ -96,7 +96,7 @@ const Login = () => {
           </p>
 
           <h1 className="mt-2.5 text-[30px] font-light leading-tight tracking-tighter">
-            Welcome back.
+            Welcome.
           </h1>
 
           <p className="mt-1.5 text-xs leading-5 text-[#77796f]">
@@ -227,9 +227,7 @@ const Login = () => {
 
           {/* Register */}
           <div className="mt-5 border-t border-[#eae8e1] pt-4">
-            <p className="text-xs text-[#77796f]">
-              New to Freedom?
-            </p>
+            <p className="text-xs text-[#77796f]">New to Freedom?</p>
 
             <Link
               to="/signup"
