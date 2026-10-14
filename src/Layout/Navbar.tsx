@@ -28,7 +28,7 @@ import {
   useScroll,
 } from "framer-motion";
 
-import logo from "@/assets/logo.svg";
+import logo from "/public/logo.svg";
 import "./Navbar.css";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { logout } from "@/store/Slices/AuthSlice/authSlice";
