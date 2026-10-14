@@ -50,7 +50,7 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
         data?.outOfBalance !== 0 ? "text-red-600" : "text-neutral-800",
     },
     {
-      label: "Current Grab Order",
+      label: "Current Order",
       value: `${data?.completedOrdersCount} / 30`,
       valueClass: "text-neutral-950",
     },

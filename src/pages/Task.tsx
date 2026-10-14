@@ -276,7 +276,7 @@ const Task: React.FC = () => {
 
               <p className="mt-2 text-3xl font-light tracking-tight tabular-nums">
                 {String(completedOrders).padStart(2, "0")}
-                <span className="ml-1 text-base text-neutral-400">/ 25</span>
+                <span className="ml-1 text-base text-neutral-400">/ 30</span>
               </p>
             </div>
 

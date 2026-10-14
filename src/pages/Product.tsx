@@ -251,7 +251,7 @@ const Product: React.FC = () => {
         {/* Product Information */}
         <section className="border-b border-neutral-200 px-5 py-6">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+            <p className="text-[12px] font-medium uppercase tracking-[0.2em] ">
               {getOrderLabel().replace(/[()]/g, "") || "Product"}
             </p>
 
@@ -319,11 +319,11 @@ const Product: React.FC = () => {
         {/* Fixed Bottom Actions */}
         <footer className="w-full max-w-130 border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
           <div className="mb-3 flex items-center justify-between gap-4">
-            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-500">
+            <span className="text-[16px] font-medium uppercase tracking-[0.18em] text-neutral-500">
               Earn Profit
             </span>
 
-            <span className="text-sm font-medium tabular-nums text-emerald-700">
+            <span className="text-[16px] font-bold tabular-nums text-emerald-700">
               {purchaseData?.data?.mysteryboxMethod
                 ? `${
                     purchaseData.data.mysteryboxMethod === "12x"
