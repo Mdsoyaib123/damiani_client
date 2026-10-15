@@ -251,7 +251,7 @@ const Product: React.FC = () => {
         {/* Product Information */}
         <section className="border-b border-neutral-200 px-5 py-6">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="text-[12px] font-medium uppercase tracking-[0.2em] ">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
               {getOrderLabel().replace(/[()]/g, "") || "Product"}
             </p>
 
@@ -273,30 +273,34 @@ const Product: React.FC = () => {
 
         {/* Pricing */}
         <section className="border-b border-neutral-200 bg-white px-5 py-6">
-          <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+          <p className="mb-5 text-[11px] font-semibold uppercase italic tracking-[0.2em] text-neutral-600">
             Price Breakdown
           </p>
 
           <div className="space-y-5">
             <div className="flex items-baseline justify-between gap-4">
-              <span className="text-xs text-neutral-500">Product Price</span>
-              <span className="text-base font-light tabular-nums text-neutral-900">
+              <span className="text-sm font-bold italic text-neutral-700">
+                Product Price
+              </span>
+              <span className="text-base font-bold  tabular-nums text-neutral-900">
                 {formatCurrency(product.price)}
               </span>
             </div>
 
             <div className="flex items-baseline justify-between gap-4">
-              <span className="text-xs text-neutral-500">Commission</span>
-              <span className="text-base font-light tabular-nums text-emerald-700">
+              <span className="text-sm font-bold italic text-neutral-700">
+                Commission
+              </span>
+              <span className="text-base font-medium  tabular-nums text-emerald-700">
                 +{formatCurrency(commission)}
               </span>
             </div>
 
             <div className="flex items-baseline justify-between gap-4 border-t border-neutral-200 pt-5">
-              <span className="text-xs font-medium text-neutral-700">
+              <span className="text-sm font-semibold italic text-neutral-900">
                 Sale Price
               </span>
-              <span className="text-xl font-medium tabular-nums text-neutral-900">
+              <span className="text-xl font-bold  tabular-nums text-neutral-950">
                 {formatCurrency(salePrice)}
               </span>
             </div>
@@ -319,11 +323,11 @@ const Product: React.FC = () => {
         {/* Fixed Bottom Actions */}
         <footer className="w-full max-w-130 border-t border-neutral-200 bg-[#f5f5f3] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
           <div className="mb-3 flex items-center justify-between gap-4">
-            <span className="text-[16px] font-medium uppercase tracking-[0.18em] text-neutral-500">
+            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-500">
               Earn Profit
             </span>
 
-            <span className="text-[16px] font-bold tabular-nums text-emerald-700">
+            <span className="text-sm font-medium tabular-nums text-emerald-700">
               {purchaseData?.data?.mysteryboxMethod
                 ? `${
                     purchaseData.data.mysteryboxMethod === "12x"

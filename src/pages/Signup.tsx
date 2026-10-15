@@ -70,8 +70,11 @@ const Signup = () => {
 
       toast.success("Registration successful");
       navigate("/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      toast.error(err?.data?.message || "Registration failed. Please try again.");
+      toast.error(
+        err?.data?.message || "Registration failed. Please try again.",
+      );
       console.error("Registration failed", err);
     }
   };
@@ -79,8 +82,7 @@ const Signup = () => {
   const inputClass =
     "h-11 w-full min-w-0 border border-[#dcdad1] bg-white px-3 text-sm text-[#252720] outline-none placeholder:text-[#b0afa6] transition-colors focus:border-[#55735d]";
 
-  const labelClass =
-    "mb-2 block text-xs font-medium text-[#45473f]";
+  const labelClass = "mb-2 block text-xs font-medium text-[#45473f]";
 
   const errorClass = "mt-1.5 text-[11px] text-[#b34e43]";
 
@@ -129,10 +131,10 @@ const Signup = () => {
               </label>
 
               <div className="flex h-11 min-w-0 items-stretch border border-[#dcdad1] bg-white transition-colors focus-within:border-[#55735d]">
-               <CountryCodeSelect
-                    value={countryCode}
-                    onChange={setCountryCode}
-                  />
+                <CountryCodeSelect
+                  value={countryCode}
+                  onChange={setCountryCode}
+                />
 
                 <input
                   id="phone"
@@ -248,9 +250,7 @@ const Signup = () => {
               />
 
               {errors.confirmPassword && (
-                <p className={errorClass}>
-                  {errors.confirmPassword.message}
-                </p>
+                <p className={errorClass}>{errors.confirmPassword.message}</p>
               )}
             </div>
 
@@ -290,9 +290,7 @@ const Signup = () => {
 
           {/* Login link */}
           <div className="mt-5 border-t border-[#eae8e1] pt-4">
-            <p className="text-xs text-[#77796f]">
-              Already have an account?
-            </p>
+            <p className="text-xs text-[#77796f]">Already have an account?</p>
 
             <Link
               to="/login"
@@ -312,8 +310,8 @@ const Signup = () => {
               className="underline underline-offset-2 hover:text-[#252720]"
             >
               Terms
-            </Link>
-            {" "}and{" "}
+            </Link>{" "}
+            and{" "}
             <Link
               to="/privacy-policy"
               className="underline underline-offset-2 hover:text-[#252720]"
