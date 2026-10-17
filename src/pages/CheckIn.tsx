@@ -267,13 +267,13 @@ export default function CheckIn() {
                   <div
                     className="h-full bg-black transition-all"
                     style={{
-                      width: `${Math.min((orderCount / 41) * 100, 100)}%`,
+                      width: `${Math.min((orderCount / 60) * 100, 100)}%`,
                     }}
                   />
                 </div>
 
                 <p className="mt-2 text-[10px] uppercase tracking-[0.12em] text-gray-400">
-                  {Math.min(orderCount, 41)} of 41 orders
+                  {Math.min(orderCount, 60)} of 60 orders
                 </p>
               </div>
             </section>
