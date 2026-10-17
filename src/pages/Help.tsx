@@ -16,10 +16,6 @@ export default function Help() {
             time.
         </>,
         <>
-            Accounts are not allowed to keep remaining funds exceeding{" "}
-            <strong>100,000 taka</strong> after applying for Sell Out.
-        </>,
-        <>
             <strong>Note:</strong> Sell Out time is from{" "}
             <strong>10:00 AM to 10:00 PM</strong>. Only one Sell Out request
             can be made per day.
