@@ -280,9 +280,9 @@ const Task: React.FC = () => {
               </p>
             </div>
 
-            <p className="pb-1 text-xs text-neutral-500">
+            {/* <p className="pb-1 text-xs text-neutral-500">
               {Math.round(orderProgress)}% completed
-            </p>
+            </p> */}
           </div>
 
           <div
