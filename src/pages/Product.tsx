@@ -144,7 +144,7 @@ const Product: React.FC = () => {
   console.log((error as any)?.data?.message, "error in product page");
 
   const getOrderLabel = () => {
-    if (!purchaseData?.data?.isAdminAssigned) return "(Grab Order)";
+    if (!purchaseData?.data?.isAdminAssigned) return "(Mining Order)";
 
     if (
       purchaseData?.data?.mysteryboxMethod === "12x" &&

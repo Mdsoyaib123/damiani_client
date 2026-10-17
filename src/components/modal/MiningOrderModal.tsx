@@ -130,7 +130,7 @@ const MiningOrderModal: React.FC<MiningOrderModalProps> = ({
             id="mining-order-title"
             className="text-2xl font-semibold tracking-tight text-black"
           >
-            Grab Order
+            Mining Order
           </h2>
 
           <p className="mt-2 text-xs tracking-wide text-neutral-500">

@@ -260,7 +260,7 @@ export default function CheckIn() {
                 </h3>
 
                 <p className="mt-1.5 text-xs leading-5 text-gray-500">
-                  Complete 41 orders to unlock the check-in rewards.
+                  Complete 60 orders to unlock the check-in rewards.
                 </p>
 
                 <div className="mt-3 h-1 w-full bg-gray-100">

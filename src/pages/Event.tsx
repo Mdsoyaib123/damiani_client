@@ -1,5 +1,5 @@
 import Carousel from "@/components/Carousel/Carousel";
-import img1 from "@/assets/carousel/ep1.jpeg"
+import img1 from "@/assets/carousel/ep3.png"
 import img2 from "@/assets/carousel/ep2.jpeg"
 import img3 from "@/assets/carousel/Gemini_Generated_Image_ncl0tjncl0tjncl0.jpeg"
 

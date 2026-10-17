@@ -253,7 +253,7 @@ const Task: React.FC = () => {
               Damiani
             </p>
             <h1 className="mt-1 text-2xl font-light tracking-tight text-neutral-900">
-              Grab <span className="font-semibold">Order</span>
+              Mining <span className="font-semibold">Order</span>
             </h1>
           </button>
 
@@ -392,7 +392,7 @@ const Task: React.FC = () => {
               <Pickaxe className="h-5 w-5" strokeWidth={1.6} />
               <span className="text-left">
                 <span className="block text-[11px] font-medium uppercase tracking-[0.18em]">
-                  Grab Order
+                  Mining Order
                 </span>
                 <span className="mt-1 block text-[10px] text-white/60">
                   {completedOrders} / 30 orders completed
