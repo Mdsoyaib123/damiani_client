@@ -429,7 +429,7 @@ const History = () => {
                         </div>
 
                         <div className="min-w-0">
-                          <h3 className="text-sm font-normal text-black">
+                          <h3 className="text-sm font-normal text-red-500">
                             Withdrawal
                           </h3>
 
