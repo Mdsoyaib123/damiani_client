@@ -122,6 +122,8 @@ const Task: React.FC = () => {
     }
   }, [user]);
 
+  console.log('user -----------', user);
+
   const accountDetailsData = {
     name: user?.name || "sajjadhosenmahim",
     userId: user?.userId || 7872843,
@@ -132,8 +134,9 @@ const Task: React.FC = () => {
     dailyProfit: user?.dailyProfit || 0,
     outOfBalance: user?.outOfBalance || 0,
     completedOrdersCount: user?.completedOrdersCount || 0,
-    trialRoundBalance: user?.trialRoundBalance || 9000,
+    trialRoundBalance: user?.trialRoundBalance 
   };
+  console.log('accountDetailsData -----------', accountDetailsData);
 
   const handleStartClick = () => {
     if (

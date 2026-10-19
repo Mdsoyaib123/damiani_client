@@ -26,6 +26,8 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
 }) => {
   if (!open) return null;
 
+  console.log('data -----------', data);
+
   const formatMoney = (amount: number) =>
     Number(amount || 0).toLocaleString("en-US", {
       minimumFractionDigits: 2,
@@ -60,7 +62,7 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = ({
       valueClass: "text-neutral-950",
     },
   ];
-
+console.log('details -----------',details);
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6"
